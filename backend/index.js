@@ -2,7 +2,11 @@
 const cors=require("cors")
 const express=require("express");
 const app=express();
-app.use(cors({origin:"https://incloud-frontend.vercel.app"}));
+app.use(cors({
+    origin: "https://incloud-frontend.vercel.app", // Allow requests from your frontend
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    credentials: true // Allow cookies to be sent with requests (if needed)
+}));
 // PORT find kro 
 
 require("dotenv").config();
