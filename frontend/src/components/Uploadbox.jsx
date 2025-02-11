@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "../Context/useAuth";
 
 export default function Uploadbox({name}) {
-  const API_BASE_URL="https://incloud-backend.vercel.app/"
+  const API_BASE_URL="https://incloud-backend.vercel.app"
   const navigate = useNavigate();
   const { user } = useAuth();
   const [error, setError] = useState("");

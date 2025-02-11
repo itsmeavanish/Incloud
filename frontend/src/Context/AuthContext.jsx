@@ -33,7 +33,7 @@ function reducer(state, action) {
 }
 
 export function AuthProvider({ children }) {
-    const API_BASE_URL="https://incloud-backend.vercel.app/"
+    const API_BASE_URL="https://incloud-backend.vercel.app"
   const [{ user, isAuthenticated, loading, error, value }, dispatch] = useReducer(reducer, initialState);
 
   const fetchUserProfile = async () => {

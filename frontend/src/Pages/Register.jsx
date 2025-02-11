@@ -7,7 +7,7 @@ import Spinner from "../Stylings/Spinner";
 import { useAuth } from "../Context/useAuth";
 
 export default function Register() {
-    const API_BASE_URL="https://incloud-backend.vercel.app/"
+    const API_BASE_URL="https://incloud-backend.vercel.app"
   const {login}=useAuth();
   const [loading,setloading]=useState(false)
   const [formData, setFormData] = useState({

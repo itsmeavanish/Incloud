@@ -4,7 +4,7 @@ import ContentFiles from "../components/ContentFiles";
 import { IoCloudUploadOutline } from "react-icons/io5";
 
 export default function Storage() {
-    const API_BASE_URL="https://incloud-backend.vercel.app/"
+    const API_BASE_URL="https://incloud-backend.vercel.app"
   const [data, setData] = useState([]);
   const navigate=useNavigate();
   // State to handle loading and errors
