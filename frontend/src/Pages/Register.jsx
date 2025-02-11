@@ -7,6 +7,7 @@ import Spinner from "../Stylings/Spinner";
 import { useAuth } from "../Context/useAuth";
 
 export default function Register() {
+    const API_BASE_URL="https://incloud-backend.vercel.app/"
   const {login}=useAuth();
   const [loading,setloading]=useState(false)
   const [formData, setFormData] = useState({
@@ -44,7 +45,7 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/auth/register",
+        `${API_BASE_URL}/api/auth/register`,
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },

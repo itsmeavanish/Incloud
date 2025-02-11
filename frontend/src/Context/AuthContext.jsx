@@ -33,6 +33,7 @@ function reducer(state, action) {
 }
 
 export function AuthProvider({ children }) {
+    const API_BASE_URL="https://incloud-backend.vercel.app/"
   const [{ user, isAuthenticated, loading, error, value }, dispatch] = useReducer(reducer, initialState);
 
   const fetchUserProfile = async () => {
@@ -41,7 +42,7 @@ export function AuthProvider({ children }) {
       const token = getToken();
       if (!token) throw new Error("No authentication token found");
 
-      const response = await axios.get("http://localhost:4000/api/auth/profile", {
+      const response = await axios.get(`${API_BASE_URL}/api/auth/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

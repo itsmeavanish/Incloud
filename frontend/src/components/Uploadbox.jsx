@@ -6,7 +6,8 @@ import Spinner from "../Stylings/Spinner";
 import { toast } from "react-toastify";
 import { useAuth } from "../Context/useAuth";
 
-export default function Uploadbox({name,setfileSize}) {
+export default function Uploadbox({name}) {
+  const API_BASE_URL="https://incloud-backend.vercel.app/"
   const navigate = useNavigate();
   const { user } = useAuth();
   const [error, setError] = useState("");
@@ -87,7 +88,7 @@ export default function Uploadbox({name,setfileSize}) {
     try {
       if (name==="IMAGE"){
         const response = await axios.post(
-          "http://localhost:4000/api/auth/upload/imageUpload",
+          `${API_BASE_URL}/api/auth/upload/imageUpload`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -96,7 +97,7 @@ export default function Uploadbox({name,setfileSize}) {
       }
       else if (name==="VIDEO"){
         const response = await axios.post(
-          "http://localhost:4000/api/auth/upload/videoUpload",
+          `${API_BASE_URL}/api/auth/upload/videoUpload`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -105,7 +106,7 @@ export default function Uploadbox({name,setfileSize}) {
       }
       else{
         const response = await axios.post(
-          "http://localhost:4000/api/auth/upload/generalUpload",
+          `${API_BASE_URL}/api/auth/upload/generalUpload`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },

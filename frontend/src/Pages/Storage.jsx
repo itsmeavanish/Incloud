@@ -4,6 +4,7 @@ import ContentFiles from "../components/ContentFiles";
 import { IoCloudUploadOutline } from "react-icons/io5";
 
 export default function Storage() {
+    const API_BASE_URL="https://incloud-backend.vercel.app/"
   const [data, setData] = useState([]);
   const navigate=useNavigate();
   // State to handle loading and errors
@@ -23,7 +24,7 @@ export default function Storage() {
           navigate('/login');
           return;
         }
-        const response = await fetch("http://localhost:4000/api/auth/upload/fetchfile",{
+        const response = await fetch(`${API_BASE_URL}/api/auth/upload/fetchfile`,{
           method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
