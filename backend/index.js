@@ -2,11 +2,7 @@
 const cors=require("cors")
 const express=require("express");
 const app=express();
-app.use(cors({
-    origin: "https://incloud-frontend.vercel.app", // Allow requests from your frontend
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
-    credentials: true // Allow cookies to be sent with requests (if needed)
-}));
+
 // PORT find kro 
 
 require("dotenv").config();
@@ -16,6 +12,11 @@ const PORT=process.env.PORT || 3000;
 
 
 app.use(express.json());
+app.use(cors({
+    origin: "https://incloud-frontend.vercel.app", // Allow requests from your frontend
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    credentials: true // Allow cookies to be sent with requests (if needed)
+}));
 const fileupload=require("express-fileupload");
 app.use(
     fileupload({
@@ -37,7 +38,11 @@ cloudinary.cloudinaryConnect();
 //api route mounting
 const Upload=require("./routes/FileUpload")
 const authRoutes=require("./routes/userRoute")
-
+app.get("/",
+    (req,res)=>{
+        res.json("Hello")
+    }
+)
 app.use('/api/auth', authRoutes);
 app.use('/api/auth/upload',Upload);
 //activating server
