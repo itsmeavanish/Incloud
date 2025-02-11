@@ -1,0 +1,13 @@
+.homepage{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    overflow: hidden;
+}
+.main{
+    overflow: auto;
+    width: 100%;
+    background-color:  white;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}

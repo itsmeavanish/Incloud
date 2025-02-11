@@ -1,0 +1,269 @@
+.page{
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  overflow: hidden;
+}
+
+/* Container */
+.container {
+  height: 100%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  }
+  
+  /* Card */
+  .card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    
+    
+  }
+  
+  /* Header Section */
+  .header {
+  
+    background: linear-gradient(to right, #667eea, #5a67d8);
+    text-align: center;
+    padding: 1.3rem;
+    color: white;
+  }
+  
+  .logo {
+   height: 2rem;
+    width: 2rem;
+    padding: 1.3rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    position: relative;
+    left:48%;
+    
+  
+  
+  }
+  .icon{
+    position: relative;
+    top: -0.6rem;
+    left: -0.65rem;
+  }
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+  
+  /* Form Section */
+  .formSection {
+    padding: 32px;
+  }
+  
+  .welcome {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2d3748;
+  }
+  
+  .instructions {
+    text-align: center;
+    font-size: 14px;
+    color: #718096;
+    margin-top: 8px;
+  }
+  
+  .form {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: center;
+
+  }
+  
+  /* Input Group Wrapper */
+.inputGroup {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.inputgroup{
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+gap: 0.5rem;
+  position: relative;
+
+}
+.profilebox{
+  width: 100%;
+  padding: 12px 16px 12px 44px; /* Extra left padding for icon */
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #2d3748;
+  background-color: #f7fafc;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+}
+.profilebox::after{
+  border-color: #5a67d8;
+  box-shadow: 0 0 0 4px rgba(90, 103, 216, 0.2);
+}
+/* Input Field */
+.input {
+  width: 100%;
+  padding: 12px 16px 12px 44px; /* Extra left padding for icon */
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #2d3748;
+  background-color: #f7fafc;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+/* Focus State */
+.input:focus {
+  border-color: #5a67d8;
+  box-shadow: 0 0 0 4px rgba(90, 103, 216, 0.2);
+}
+
+/* Input Placeholder */
+.input::placeholder {
+  color: #a0aec0;
+  font-size: 14px;
+}
+
+/* Input Icon */
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  font-size: 18px;
+  color: #718096;
+  pointer-events: none;
+}
+
+/* Label for File Input */
+.inputLabel {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 12px 20px;
+  background-color: #edf2f7;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a5568;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  gap: 4rem;
+}
+
+/* Hover State for File Input Label */
+.inputLabel:hover {
+  background-color: #e2e8f0;
+  border-color: #5a67d8;
+  color: #2d3748;
+}
+  .forgotPassword {
+    text-align: right;
+  }
+  
+  .link {
+    font-size: 14px;
+    color: #5a67d8;
+    text-decoration: none;
+  }
+  
+  .link:hover {
+    color: #434190;
+  }
+  
+  /* Submit Button */
+  .submitButton {
+    padding: 12px;
+    background: #5a67d8;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .submitButton:hover {
+    background: #434190;
+  }
+  
+  /* Footer Text */
+  .footerText {
+    text-align: center;
+    font-size: 14px;
+    color: #718096;
+    margin-top: 16px;
+  }
+  
+  .toggleButton {
+    background: none;
+    border: none;
+    color: #5a67d8;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .toggleButton:hover {
+    color: #434190;
+  }
+  
+  /* Features Section */
+  .features {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .featureItem {
+    text-align: center;
+    font-size: 14px;
+    color: #2d3748;
+  }
+  
+  .featureIcon {
+    background: white;
+    padding: 8px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 8px;
+    display: flex;
+justify-content: center;
+align-items: center;
+  }
+  
+  .smallIcon {
+    color: #5a67d8;
+
+  }
+  

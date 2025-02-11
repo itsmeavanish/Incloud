@@ -1,0 +1,35 @@
+.spinnerContainer {
+  height: 90%; /* Full viewport height */
+  width: 96%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent; /* Optional background color for contrast */
+  position: absolute;
+ backdrop-filter: blur(10px); /* Apply blur effect */
+ background-color: rgba(255, 255, 255, 0.3); /* Optional semi-transparent background */
+ z-index: 9999; 
+ left: 2rem;
+ top: 2rem;
+ box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25), /* Subtle shadow below */
+              0px 0px 15px rgba(76, 175, 80, 0.5); 
+
+
+
+
+}
+
+.spinner {
+  width: 6rem;
+  height: 6rem;
+  border: 8px solid rgba(0, 0, 0, 0.1); /* Light border for outer ring */
+  border-top: 8px solid #4caf50; /* Colored border for animation */
+  border-radius: 50%;
+  animation: spin 1s linear infinite; /* Rotation animation */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
