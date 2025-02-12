@@ -14,7 +14,7 @@ const protect = async (req, res, next) => {
     const token = authHeader.split(" ")[1];
 
     // Verify the token
-    const decoded = jwt.verify(token,.JWT_SECRET);
+    const decoded = jwt.verify(token,JWT_SECRET);
 
     // Find the user in the database and exclude the password field
     const user = await User.findById(decoded.userId).select("-password");
