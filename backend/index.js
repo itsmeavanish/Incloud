@@ -28,13 +28,8 @@ app.use(
 
 // db se connect
 
-const {connect} =require("./config/database");
-connect().then(()=>console.log("DB Connection Successfull"))
-.catch((error)=>{
-    console.log("DB Connection Issues h");
-    console.error(error);
-
-});
+const db =require("./config/database");
+db.connect()
 
 // cloud se connect 
 
