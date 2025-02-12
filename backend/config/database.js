@@ -4,7 +4,6 @@ require("dotenv").config();
 exports.connect = async () => {
   const uri = process.env.MONGODB_URL; // Ensure this is defined
   console.log("MongoDB URI:", uri);
-
   if (!uri) {
     throw new Error("MongoDB URI is not defined");
   }

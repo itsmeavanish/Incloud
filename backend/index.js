@@ -2,6 +2,7 @@
 require("dotenv").config();
 const cors=require("cors")
 const express=require("express");
+const fileupload=require("express-fileupload");
 const app=express();
 
 // PORT find kro 
@@ -18,7 +19,7 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
     credentials: true // Allow cookies to be sent with requests (if needed)
 }));
-const fileupload=require("express-fileupload");
+
 app.use(
     fileupload({
         useTempFiles: true, // Enables temporary file storage
@@ -28,7 +29,7 @@ app.use(
 
 // db se connect
 
-const db =require("./config/database");
+const db =require('./config/database');
 db.connect()
 
 // cloud se connect 
