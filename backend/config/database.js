@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
 require("dotenv").config();
 exports.connect=async ()=> {
-    const uri="mongodb+srv://avanishupadhyay633:CwXjVf586oQTfRCd@cluster0.c80t1.mongodb.net/mediauploader";
+    const uri=process.env.MONGODB_URL;
     console.log(uri);
     await mongoose
     .connect(uri,{
