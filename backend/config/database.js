@@ -3,7 +3,6 @@ require("dotenv").config();
 
 exports.connect = async () => {
   const uri = "mongodb+srv://avanishupadhyay633:2jqrvQmQwiOgLslp@cluster0.c80t1.mongodb.net/mediauploader?retryWrites=true&w=majority&appName=Cluster0"; // Ensure this is defined
-  console.log("MongoDB URI:", uri);
   if (!uri) {
     throw new Error("MongoDB URI is not defined");
   }
