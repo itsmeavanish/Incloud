@@ -6,7 +6,6 @@ exports.connect = async () => {
   if (!uri) {
     throw new Error("MongoDB URI is not defined");
   }
-
   try {
     await mongoose.connect(uri);
     console.log("DB Connection Successful");
