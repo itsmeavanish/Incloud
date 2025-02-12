@@ -9,7 +9,6 @@ const Profile = () => {
   function handlelogout(e){
     e.preventDefault();
     logout();
-    window.location.reload();
 
   }
   if (loading) {
