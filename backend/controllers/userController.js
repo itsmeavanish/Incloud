@@ -5,7 +5,8 @@ const { cloudinaryConnect } = require("../config/cloudinary");
 
 // Generate JWT Token
 const generateToken = (userId) => {
-  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
+  const JWT_SECRET="ilovenobody"
+  return jwt.sign({ userId }, JWT_SECRET, { expiresIn: "7d" });
 };
 
 // Upload file to Cloudinary for profile photo
