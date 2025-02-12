@@ -9,10 +9,7 @@ exports.connect = async () => {
   }
 
   try {
-    await mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(uri);
     console.log("DB Connection Successful");
   } catch (error) {
     console.error("DB Connection Issues:");
