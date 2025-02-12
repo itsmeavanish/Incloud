@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 const protect = async (req, res, next) => {
+  const JWT_SECRET="ilovenobody"
   try {
     // Extract the token from the Authorization header
     const authHeader = req.headers.authorization;
@@ -13,7 +14,7 @@ const protect = async (req, res, next) => {
     const token = authHeader.split(" ")[1];
 
     // Verify the token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token,.JWT_SECRET);
 
     // Find the user in the database and exclude the password field
     const user = await User.findById(decoded.userId).select("-password");
