@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../Context/useAuth';
  function Login() {
-    const API_BASE_URL="https://incloud-backend.vercel.app"
+    const API_BASE_URL="https://incloud-backend.vercel.app/"
   const {user,login}=useAuth();
   console.log(user)
   const [data,setdata]=useState({});
@@ -25,7 +25,7 @@ import { useAuth } from '../Context/useAuth';
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/auth/login`, formData);
+      const response = await axios.post(`${API_BASE_URL}api/auth/login`, formData);
       localStorage.setItem('token', response.data.token);
       console.log("response",response);
       login(formData)

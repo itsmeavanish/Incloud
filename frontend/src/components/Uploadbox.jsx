@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "../Context/useAuth";
 
 export default function Uploadbox({name}) {
-  const API_BASE_URL="https://incloud-backend.vercel.app"
+  const API_BASE_URL="https://incloud-backend.vercel.app/"
   const navigate = useNavigate();
   const { user } = useAuth();
   const [error, setError] = useState("");
@@ -88,7 +88,7 @@ export default function Uploadbox({name}) {
     try {
       if (name==="IMAGE"){
         const response = await axios.post(
-          `${API_BASE_URL}/api/auth/upload/imageUpload`,
+          `${API_BASE_URL}api/auth/upload/imageUpload`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -97,7 +97,7 @@ export default function Uploadbox({name}) {
       }
       else if (name==="VIDEO"){
         const response = await axios.post(
-          `${API_BASE_URL}/api/auth/upload/videoUpload`,
+          `${API_BASE_URL}api/auth/upload/videoUpload`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -106,7 +106,7 @@ export default function Uploadbox({name}) {
       }
       else{
         const response = await axios.post(
-          `${API_BASE_URL}/api/auth/upload/generalUpload`,
+          `${API_BASE_URL}api/auth/upload/generalUpload`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
