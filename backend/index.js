@@ -1,11 +1,12 @@
 //app create
+require("dotenv").config();
 const cors=require("cors")
 const express=require("express");
 const app=express();
 
 // PORT find kro 
 
-require("dotenv").config();
+
 const PORT=process.env.PORT || 3000;
 
 //midlleware add krna hai  
