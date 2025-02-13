@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import axios from "axios";
 
-export const Authcontext = createContext();
+const Authcontext = createContext();
 
 const getToken = () => localStorage.getItem("token");
 
