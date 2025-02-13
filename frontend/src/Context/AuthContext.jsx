@@ -32,7 +32,7 @@ function reducer(state, action) {
   }
 }
 
-export function AuthProvider({ children }) {
+export default function AuthProvider({ children }) {
     const API_BASE_URL="https://incloud-backend.vercel.app/"
   const [{ user, isAuthenticated, loading, error, value }, dispatch] = useReducer(reducer, initialState);
 
@@ -75,3 +75,4 @@ export function AuthProvider({ children }) {
     </Authcontext.Provider>
   );
 }
+export {Authcontext};
