@@ -3,14 +3,14 @@ import React from "react";
 import styles from "./Profile.module.css";
 import { ChevronDown } from "lucide-react";
 import { useAuth } from "../Context/useAuth";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const { user, loading, error,logout } = useAuth();
   function handlelogout(e){
     e.preventDefault();
     logout();
-    redirect("./login")
+   window.location.reload()
   }
   if (loading) {
     return <div className={styles.loader}>
