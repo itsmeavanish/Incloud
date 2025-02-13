@@ -8,10 +8,10 @@ import Favorites from "./Pages/Favorites";
 import Recents from "./Pages/Recents";
 import Media from "./Pages/Media";
 import Register from "./Pages/Register";
-import { AuthProvider } from "./Context/AuthContext";
 import { Suspense } from "react";
 import Spinner from "./Stylings/Spinner";
 import { ToastContainer } from "react-toastify";
+import AuthProvider from "./Context/AuthContext";
 
 function NotFound() {
   return <h1>404 - Page Not Found</h1>;
