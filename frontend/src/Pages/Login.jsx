@@ -13,6 +13,7 @@ import { useAuth } from '../Context/useAuth';
     email: '',
     password: ''
   });
+  const [loading,setloading]=useState(false);
   const [error, setError] = useState('');
   const navigate=useNavigate();
   const handleChange = (e) => {
@@ -25,15 +26,19 @@ import { useAuth } from '../Context/useAuth';
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setloading(true)
       const response = await axios.post(`${API_BASE_URL}api/auth/login`, formData);
       localStorage.setItem('token', response.data.token);
       console.log("response",response);
       login(formData)
       navigate('/');
       setdata(response);
-      login()
+      login();
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred');
+    }
+    finally{
+      setloading(false)
     }
   };
   return (
@@ -82,7 +87,7 @@ import { useAuth } from '../Context/useAuth';
      
 
             <button type="submit" className={styles.submitButton}>
-              Sign In
+              {loading ? "Signing in .....":"Sign In"}
             </button>
           </form>
 
