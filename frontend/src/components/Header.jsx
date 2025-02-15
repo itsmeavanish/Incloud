@@ -14,7 +14,7 @@ export default function Header() {
       }
       update();
     },
-    [searchval, search]
+    [searchval]
   );
 
   return (
