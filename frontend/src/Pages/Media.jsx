@@ -10,17 +10,21 @@ const upload = [
 
 export default function Media() {
   return (
-    <div style={{textAlign:"center"}}>
-     <div style={{display:"flex", justifyContent:"space-between", padding:"2rem"}}>
-      <span style={{fontWeight:"600"}}> Add Your media</span>
-      <span style={{display:"flex", justifyContent:"center", alignItems:"center" }}>
+    <div className="text-center p-4">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+        <span className="font-semibold text-lg">Add Your Media</span>
+        <span className="flex items-center mt-4 md:mt-0">
           <IoCloudUploadOutline size="1.5rem" />
-          <button style={{border:"none", background:"transparent", fontSize:"1rem"}}>Upload</button>
-      </span>
-     </div>
-          <div style={{backgroundColor:"", display:"flex", justifyContent:"space-evenly"}}>
-            {upload.map((item,index)=><Upload items={item} key={index}/>)}
-          </div> 
+          <button className="ml-2 text-blue-500 hover:underline focus:outline-none">
+            Upload
+          </button>
+        </span>
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {upload.map((item, index) => (
+          <Upload items={item} key={index} />
+        ))}
+      </div>
     </div>
-  )
+  );
 }

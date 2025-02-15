@@ -2,26 +2,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Root styles for global settings */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
   color-scheme: light dark;
   color: black;
-background-color: transparent;
+  background-color: transparent;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Body styles */
 body {
   height: 100%;
   width: 100%;
   font-size: 16px;
   margin: 0;
   display: flex;
-  place-items: center;
-
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* Stack items on smaller screens */
 }
+
+/* Animation for elements sliding in */
 @keyframes slideInFromRight {
   from {
     transform: translateX(100%);
@@ -37,7 +44,40 @@ body {
   animation: slideInFromRight 1s ease-out forwards;
 }
 
-.expand{       
-          cursor: "pointer";
-          transition: "transform 0.3s ease";
+/* Expand animation for hover or focus states */
+.expand {       
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px; /* Adjust font size for medium screens */
+  }
+
+  body {
+    padding: 1rem; /* Add padding for smaller screens */
+    font-size: 14px; /* Slightly reduce the base font size */
+  }
+
+  .element {
+    animation: slideInFromRight 0.8s ease-out forwards; /* Slightly faster animation for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 12px; /* Further reduce font size for very small screens */
+  }
+
+  body {
+    flex-direction: column;
+    align-items: flex-start; /* Align content to the left */
+    padding: 1rem;
+  }
+
+  .element {
+    animation: slideInFromRight 0.6s ease-out forwards; /* Even faster for very small screens */
+  }
 }
