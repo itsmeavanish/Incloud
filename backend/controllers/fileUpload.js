@@ -59,6 +59,24 @@ async function uploadFileToCloudinary(file, folder) {
     }
 }
 
+
+async function uploadFileToCloudinarys(file, folder) {
+    const options = {
+        folder,
+        use_filename: true,
+        unique_filename: false,
+        resource_type: "raw", // Automatically detect file type
+    };
+
+    console.log("Temp file path:", file.tempFilePath);
+    try {
+        const result = await cloudinary.uploader.upload(file.tempFilePath, options);
+        return result;
+    } catch (error) {
+        console.error("Error uploading to Cloudinary:", error);
+        throw error;
+    }
+}
 // Image Upload -> Handler Function
 exports.imageUpload = async (req, res) => {
     try {
@@ -179,7 +197,7 @@ exports.generalFileUpload = async (req, res) => {
 
         // Upload file to Cloudinary
         console.log("Uploading to Cloudinary...");
-        const response = await uploadFileToCloudinary(file, "Codehelp");
+        const response = await uploadFileToCloudinarys(file, "Codehelp");
         console.log("Cloudinary upload response:", response);
 
         // Save file data to the database
@@ -187,7 +205,7 @@ exports.generalFileUpload = async (req, res) => {
             name,
             tags,
             email,
-            fileUrl: response.secure_url,
+            fileUrl: `${response.secure_url}.pdf`,
         });
 
         res.json({
