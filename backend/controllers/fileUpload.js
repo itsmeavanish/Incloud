@@ -65,7 +65,7 @@ async function uploadFileToCloudinarys(file, folder) {
         folder,
         use_filename: true,
         unique_filename: false,
-        resource_type: "raw", // Automatically detect file type
+        resource_type: "auto", // Automatically detect file type
     };
 
     console.log("Temp file path:", file.tempFilePath);
@@ -176,16 +176,13 @@ exports.videoUpload=async (req,res)=>{
 }
 exports.generalFileUpload = async (req, res) => {
     try {
-        // Fetch data from the request
         const { name, tags, email } = req.body;
         console.log("Received data:", { name, tags, email });
 
-        // Fetch the file
         const file = req.files.content;
         console.log("Received file:", file);
 
-        // Validate the file type
-        const supportedTypes = ["svg","mp4","jpg","png", "docx", "xlsx", "pdf"];
+        const supportedTypes = ["svg", "mp4", "jpg", "png", "docx", "xlsx", "pdf"];
         const fileType = file.name.split(".").pop().toLowerCase();
 
         if (!isFileTypeSupported(fileType, supportedTypes)) {
@@ -195,17 +192,15 @@ exports.generalFileUpload = async (req, res) => {
             });
         }
 
-        // Upload file to Cloudinary
         console.log("Uploading to Cloudinary...");
         const response = await uploadFileToCloudinarys(file, "Codehelp");
         console.log("Cloudinary upload response:", response);
 
-        // Save file data to the database
         const fileData = await File.create({
             name,
             tags,
             email,
-            fileUrl: `${response.secure_url}.pdf`,
+            fileUrl: fileType === "pdf" ? `${response.secure_url}.pdf` : response.secure_url,
         });
 
         res.json({
@@ -214,12 +209,10 @@ exports.generalFileUpload = async (req, res) => {
             message: "File successfully uploaded",
         });
     } catch (error) {
-        console.error("Failed to upload file:", error);
+        console.error("Failed to upload file:", error.message || error);
         res.status(500).json({
             success: false,
             message: "Something went wrong",
         });
     }
 };
-
-

@@ -5,9 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../Context/useAuth';
  function Login() {
-    const API_BASE_URL="https://incloud-backend.vercel.app/"
-  const {user,login}=useAuth();
-  console.log(user)
+  const API_BASE_URL="https://incloud-backend.vercel.app/"
+  const {login}=useAuth();
   const [data,setdata]=useState({});
   const [formData, setFormData] = useState({
     email: '',
