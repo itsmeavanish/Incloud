@@ -126,6 +126,8 @@ export default function ContentFiles({ files }) {
             color: "#6c6868f7",
             textAlign: "center",
             borderBottom: "1px solid #DFE8DC",
+            overflow:"auto",
+            scrollbarWidth:"none"
           }}
         >
           <span>Name</span>
