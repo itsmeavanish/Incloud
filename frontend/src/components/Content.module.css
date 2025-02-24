@@ -135,3 +135,17 @@
     font-size: 0.75rem;
   }
 }
+.up{
+  opacity: 0;
+  animation: up 1s ease-out 1 ease-out;
+}
+@keyframes up 
+{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+  
+}

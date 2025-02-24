@@ -31,6 +31,10 @@ export default function ContentFiles({ files }) {
     }
   }, [files, user?.email, value]);
 
+  function handletrashfile(item.id){
+    const initialData=data?.filter((file)=>item.id !== file?.id)
+
+  }
   const enterFullscreen = () => {
     if (divRef.current.requestFullscreen) {
       divRef.current.requestFullscreen();
@@ -147,6 +151,7 @@ export default function ContentFiles({ files }) {
                 iframe={iframe}
                 setiframe={setIframe}
                 fileSize={fileSize}
+                handletrashfile={handletrashfile}
               />
             ))}
           </li>
