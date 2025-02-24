@@ -116,6 +116,8 @@ export default function ContentFiles({ files }) {
           display: "flex",
           flexDirection: "column",
           gap: "0.6rem",
+            overflow:"scroll",
+            scrollbarWidth:"none"
         }}
       >
         <li
@@ -126,7 +128,7 @@ export default function ContentFiles({ files }) {
             color: "#6c6868f7",
             textAlign: "center",
             borderBottom: "1px solid #DFE8DC",
-            overflow:"auto",
+            overflow:"scroll",
             scrollbarWidth:"none"
           }}
         >
