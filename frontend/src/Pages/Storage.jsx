@@ -58,7 +58,7 @@ console.log("data",data)
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
   return (
-    <div style={{color:"black", display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
+    <div style={{ height:"100vw",color:"black", display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
        <div>
             <div style={{ display: "flex", justifyContent: "space-between", padding: "2rem"  }}>
               <span style={{ fontWeight: "600" }}>My storage</span>
