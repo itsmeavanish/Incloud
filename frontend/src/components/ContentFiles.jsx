@@ -31,8 +31,8 @@ export default function ContentFiles({ files }) {
     }
   }, [files, user?.email, value]);
 
-  function handletrashfile(item.id){
-    const trashData=data?.filter((file)=>item.id !== file?.id);
+  function handletrashfile(id){
+    const trashData=data?.filter((file)=>id !== file?.id);
 
   }
   const enterFullscreen = () => {
