@@ -32,7 +32,8 @@ export default function ContentFiles({ files }) {
   }, [files, user?.email, value]);
 
   function handletrashfile(item.id){
-    const initialData=data?.filter((file)=>item.id !== file?.id)
+    const trashData=data?.filter((file)=>item.id !== file?.id);
+   const 
 
   }
   const enterFullscreen = () => {
@@ -220,7 +221,7 @@ export default function ContentFiles({ files }) {
             <iframe
               src={url}
               alt="Preview"
-              style={{ height: "33rem", width: "33rem", color: "black" }}
+              style={{ height: "33rem", color: "black" }}
             />
           )}
         </div>

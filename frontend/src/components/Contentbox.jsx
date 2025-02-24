@@ -33,11 +33,10 @@ onClick={handleevent}>
   <span className={styles.filesize}>{fileSize} MB</span>
   <span className={styles.filedate}>{date[0]}</span>
 </li>
-<div className={`${up ? styles.up :""}`}>
-<span onClick={()=>handletrashfile(item.id)}>.</span>
-<span>.</span>
-<span>..</span>
-</div>
+<div className="absolute top-0 left-0 w-full h-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
+          <span className="text-white text-lg font-medium">Hello! 🎉</span>
+          <span onClick={()=>handletrashfile(item.id)}>.</span>
+        </div>
 </>
 
   );
