@@ -2,7 +2,6 @@ import { SiFiles } from "react-icons/si";
 import styles from"./Content.module.css"
 import { useRef, useState } from "react";
 export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,handletrashfile }) {
-  const [up,setup]=useState(false);
   function handleevent(){
     setvisible(!visible);
     if (item.imageUrl){
@@ -20,8 +19,7 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
   return (
     // JSX part (React component)
 <>
-<li className={styles.fileitem} onMouseEnter={()=>setup(!up)}  
-onMouseLeave={()=>setup(!up)}
+<li className={styles.fileitem} 
 onClick={handleevent}>
   <div className={styles.fileinfo}>
     <span className={styles.fileicon}>
@@ -33,9 +31,7 @@ onClick={handleevent}>
   <span className={styles.filesize}>{fileSize} MB</span>
   <span className={styles.filedate}>{date[0]}</span>
 </li>
-<div className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg bg-red-700">
-          <span className="text-white text-lg font-medium">Hello! 🎉</span>
-        </div>
+
 </>
 
   );
