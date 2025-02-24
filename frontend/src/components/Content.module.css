@@ -60,6 +60,7 @@
   padding: 0.8rem 1rem;
   border-bottom: 1px solid #dfe8dc;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
 .fileitem:hover {
