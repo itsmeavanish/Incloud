@@ -123,8 +123,7 @@ export default function ContentFiles({ files }) {
       >
         <li
           style={{
-            display: "flex",
-
+            display: "flex",height:"100%",
             justifyContent: "space-between",
             padding: "1rem",
             color: "#6c6868f7",
