@@ -110,6 +110,7 @@ export default function ContentFiles({ files }) {
       </style>
       <ul
         style={{
+          height:"100vw",
           margin: "1rem",
           padding: "1rem",
           listStyleType: "none",
@@ -122,7 +123,9 @@ export default function ContentFiles({ files }) {
       >
         <li
           style={{
+            height:"100vw",
             display: "flex",
+
             justifyContent: "space-between",
             padding: "1rem",
             color: "#6c6868f7",
