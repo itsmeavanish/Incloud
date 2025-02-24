@@ -110,27 +110,22 @@ export default function ContentFiles({ files }) {
       </style>
       <ul
         style={{
-          height:"100vw",
           margin: "1rem",
           padding: "1rem",
           listStyleType: "none",
           display: "flex",
           flexDirection: "column",
           gap: "0.6rem",
-            overflow:"scroll",
-            scrollbarWidth:"none"
         }}
       >
         <li
           style={{
-            display: "flex",height:"100%",
+            display: "flex",
             justifyContent: "space-between",
             padding: "1rem",
             color: "#6c6868f7",
             textAlign: "center",
             borderBottom: "1px solid #DFE8DC",
-            overflow:"scroll",
-            scrollbarWidth:"none"
           }}
         >
           <span>Name</span>
@@ -225,7 +220,7 @@ export default function ContentFiles({ files }) {
             <iframe
               src={url}
               alt="Preview"
-              style={{ height: "33rem", color: "black" }}
+              style={{ height: "33rem", width: "33rem", color: "black" }}
             />
           )}
         </div>
