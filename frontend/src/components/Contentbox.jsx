@@ -38,9 +38,15 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
 
         {/* Hover content */}
         <div className="absolute top-80 w-auto h-auto bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 right-10 gap-4">
-          <RiLinksFill  onClick={()=>handletrashfile(item.id)}/>
-          <CiHeart />  
+          <span onClick={()=>handletrashfile(item.id)}>
+          <RiLinksFill  />
+          </span>
+          <span>
+          <CiHeart /> 
+            </span> 
+          <span>
           <FaTrash />
+          </span>
         </div>
       </li>
 </>
