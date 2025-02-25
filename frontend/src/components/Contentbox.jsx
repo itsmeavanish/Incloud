@@ -23,9 +23,9 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
   const date=item.createdAt.split("T");
   return (
     // JSX part (React component)
-<>
+<div className="group">
 <li 
-        className={`${styles.fileitem} group`} 
+        className={styles.fileitem} 
         onClick={handleevent}
       >
         <div className={styles.fileinfo}>
@@ -53,7 +53,7 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
           <FaTrash />
           </div>
         </div>
-</>
+</div>
 
   );
   
