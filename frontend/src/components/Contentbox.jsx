@@ -37,7 +37,7 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
         <span className={styles.filedate}>{date[0]}</span>
 
         {/* Hover content */}
-        <div className="absolute top-0 w-auto h-auto bg-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 left-10 gap-2">
+        <div className="absolute -top-2 w-auto h-auto bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 left-10 gap-4">
           <RiLinksFill  onClick={handletrashfile(item.id)}/>
           <CiHeart />  
           <FaTrash />
