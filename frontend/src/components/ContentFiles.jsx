@@ -32,8 +32,14 @@ export default function ContentFiles({ files }) {
   }, [files, user?.email, value]);
 
   function handletrashfile(id){
-    const filteredData=data?.filter((file)=>id !== file?.id);
+    const initialData = files?.filter((item) => item.email === user?.email) || [];
+  if (initialData){
+    const filteredData=initialData?.filter((file)=>id !== file?.id);
     setData(filteredData);
+  }
+  else{
+    setData(initialData);
+  }
 
   }
   function hadlefavorites(id){
