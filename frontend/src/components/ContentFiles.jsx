@@ -17,8 +17,8 @@ export default function ContentFiles({ files }) {
   const [fileSize, setFileSize] = useState(1);
   const divRef = useRef(null);
   const [loading, setLoading] = useState(false);
-  const name = "general";
-
+  const name = "general";  
+  
   useEffect(() => {
     const initialData = files?.filter((item) => item.email === user?.email) || [];
     if (value) {
@@ -30,7 +30,6 @@ export default function ContentFiles({ files }) {
       setData(initialData);
     }
   }, [files, user?.email, value]);
-
   function handletrashfile(id){
     const initialData = files?.filter((item) => item.email === user?.email) || [];
   if (initialData){
@@ -54,7 +53,6 @@ export default function ContentFiles({ files }) {
       divRef.current.msRequestFullscreen();
     }
   };
-
   const exitFullscreen = () => {
     if (document.exitFullscreen) {
       document.exitFullscreen();

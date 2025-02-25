@@ -5,6 +5,7 @@ import { CiHeart } from "react-icons/ci";
 import { RiLinksFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa";
 export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,handletrashfile }) {
+  console.log("item",item)
   function handleevent(){
     setvisible(!visible);
     if (item.imageUrl){
@@ -42,6 +43,7 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
           <RiLinksFill  />
           </div>
           <div className="p-1">
+            
           <CiHeart /> 
             </div> 
           <div className="p-1">
