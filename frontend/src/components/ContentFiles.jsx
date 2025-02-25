@@ -34,7 +34,7 @@ export default function ContentFiles({ files }) {
     const initialData = files?.filter((item) => item.email === user?.email) || [];
   if (initialData){
     console.log(initialData);
-    const filteredData=initialData?.filter((file)=>id != file?.id);
+    const filteredData=initialData?.filter((file)=>id != file?._id);
     setData(filteredData);
   }
   else{
