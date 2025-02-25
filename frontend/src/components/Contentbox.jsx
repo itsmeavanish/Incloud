@@ -34,7 +34,7 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
         <span className={styles.filedate}>{date[0]}</span>
 
         {/* Hover content */}
-        <div className="absolute top-0 left-0 w-full h-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3">
+        <div className="absolute top-0 left-0 w-auto h-auto bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3">
           <span className="text-white text-lg font-medium">Hello! 🎉</span>
         </div>
       </li>
