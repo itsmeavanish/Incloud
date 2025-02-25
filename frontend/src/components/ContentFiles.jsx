@@ -18,7 +18,7 @@ export default function ContentFiles({ files }) {
   const divRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const name = "general";  
-  
+  const initialData = data?.filter((item) => item.email === user?.email) || [];
   useEffect(() => {
     const initialData = files?.filter((item) => item.email === user?.email) || [];
     if (value) {
@@ -31,7 +31,7 @@ export default function ContentFiles({ files }) {
     }
   }, [files, user?.email, value]);
   function handletrashfile(id){
-    const initialData = data?.filter((item) => item.email === user?.email) || [];
+   
   if (initialData){
     console.log(initialData);
     const filteredData=initialData?.filter((file)=>id != file?._id);
