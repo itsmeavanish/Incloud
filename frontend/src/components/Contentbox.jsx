@@ -5,6 +5,7 @@ import { CiHeart } from "react-icons/ci";
 import { RiLinksFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa";
 export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,handletrashfile }) {
+  const id =item._id;
   console.log("item",item)
   function handleevent(){
     setvisible(!visible);
@@ -38,8 +39,10 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
         <span className={styles.filedate}>{date[0]}</span>
 
         {/* Hover content */}
-        <div className="absolute top-80 w-auto h-auto bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 right-20 gap-4">
-          <div onClick={()=>handletrashfile(item._id)} className="p-1">
+        
+      </li>
+      <div className="absolute top-80 w-auto h-auto bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 right-20 gap-4">
+          <div onClick={()=>handletrashfile(id)} className="p-1">
           <RiLinksFill  />
           </div>
           <div className="p-1">
@@ -50,7 +53,6 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
           <FaTrash />
           </div>
         </div>
-      </li>
 </>
 
   );
