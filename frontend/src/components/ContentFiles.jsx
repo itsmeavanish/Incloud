@@ -36,6 +36,9 @@ export default function ContentFiles({ files }) {
     setData(filteredData);
 
   }
+  function hadlefavorites(id){
+    const filteredData=data?.filter((file)=>id !== file?.id);
+  }
   const enterFullscreen = () => {
     if (divRef.current.requestFullscreen) {
       divRef.current.requestFullscreen();
