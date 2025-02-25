@@ -1,6 +1,9 @@
 import { SiFiles } from "react-icons/si";
 import styles from"./Content.module.css"
 import { useRef, useState } from "react";
+import { CiHeart } from "react-icons/ci";
+import { RiLinksFill } from "react-icons/ri";
+import { FaTrash } from "react-icons/fa";
 export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,handletrashfile }) {
   function handleevent(){
     setvisible(!visible);
@@ -34,8 +37,11 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
         <span className={styles.filedate}>{date[0]}</span>
 
         {/* Hover content */}
-        <div className="absolute top-0 left-0 w-auto h-auto bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3">
-          <span className="text-white text-lg font-medium">Hello! 🎉</span>
+        <div className="absolute w-auto h-auto bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3">
+          
+          <RiLinksFill />
+          <CiHeart />
+          <FaTrash />
         </div>
       </li>
 </>
