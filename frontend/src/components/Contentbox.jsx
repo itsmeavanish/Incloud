@@ -38,7 +38,7 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
 
         {/* Hover content */}
         <div className="absolute top-0 w-auto h-auto bg-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 left-10 gap-2">
-          <RiLinksFill />
+          <RiLinksFill  onClick={handletrashfile(item.id)}/>
           <CiHeart />  
           <FaTrash />
         </div>
