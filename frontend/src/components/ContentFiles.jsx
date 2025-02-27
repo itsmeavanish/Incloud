@@ -9,7 +9,7 @@ import Spinner from "../Stylings/Spinner";
 
 export default function ContentFiles({ files }) {
   const [id, setId] = useState();
-  const { user, value, trash, favorite, trashData } = useAuth();
+  const { user, value, trash, trashData, favorite } = useAuth();
   const [data, setData] = useState([]);
   const [iframe, setIframe] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -20,10 +20,14 @@ export default function ContentFiles({ files }) {
   const [loading, setLoading] = useState(false);
   const name = "general";
 
-  // Filter data based on user email and search value
+  // Load data and filter out trashed files
   useEffect(() => {
     const filteredData =
-      files?.filter((item) => item.email === user?.email) || [];
+      files?.filter(
+        (item) =>
+          item.email === user?.email &&
+          !trashData.some((trashed) => trashed._id === item._id)
+      ) || [];
     setData(
       value
         ? filteredData.filter((item) =>
@@ -31,31 +35,17 @@ export default function ContentFiles({ files }) {
           )
         : filteredData
     );
-  }, [files, user?.email, value]);
+  }, [files, user?.email, value, trashData]);
 
-useEffect(() => {
-  async function trashfile() {
-    try {
-      if (id) {
-        // Filter out the file with the given id
-        const updatedData = data?.filter((file) => file._id !== id);
-        await trash(updatedData); // Perform trash action
-        setData(trashData); // Update the state
-        setId(null); // Clear the id after processing
-      }
-    } catch (error) {
-      console.error("Failed to trash the file:", error);
+  // Trash a file by moving it to trashData and filtering from main data
+  const handleTrashFile = (fileId) => {
+    const fileToTrash = data.find((file) => file._id === fileId);
+    if (fileToTrash) {
+      const updatedTrashData = [...trashData, fileToTrash];
+      trash(updatedTrashData); // Update trashData in context
+      setData(data.filter((file) => file._id !== fileId)); // Filter from current data
     }
-  }
-
-  trashfile();
-}, [id, data, trash,trashData]);
-
-// Define a separate handler for trash
-const handleTrashFile = (fileId) => {
-  setId(fileId);
-};
-
+  };
 
   const handleFavorites = (id) => {
     const updatedData = data?.filter((file) => file._id !== id);
@@ -91,9 +81,9 @@ const handleTrashFile = (fileId) => {
         </li>
 
         {/* Files List */}
-        {files?.length ? (
+        {data?.length ? (
           <li className="flex flex-col gap-4">
-            {data?.map((item, index) => (
+            {data.map((item, index) => (
               <Contentbox
                 key={index}
                 item={item}
@@ -123,22 +113,22 @@ const handleTrashFile = (fileId) => {
       {/* File Preview Modal */}
       {visible && (
         <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          position: "absolute",
-          zIndex: "2000",
-          width:"63%",
-          height: "fit-content",
-          padding: "1.3rem",
-          top: "7rem",
-          left: "25rem",
-          gap: "0.7rem",
-          background: "#fbfbfc7f",
-          border: "1px solid #e9e9f1",
-        }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            position: "absolute",
+            zIndex: "2000",
+            width: "63%",
+            height: "fit-content",
+            padding: "1.3rem",
+            top: "7rem",
+            left: "25rem",
+            gap: "0.7rem",
+            background: "#fbfbfc7f",
+            border: "1px solid #e9e9f1",
+          }}
           ref={divRef}
-         className="bg-opacity-50 backdrop-blur-md shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
+          className="bg-opacity-50 backdrop-blur-md shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
         >
           <h2 className="font-semibold text-center">Your Uploaded Data</h2>
           <span
