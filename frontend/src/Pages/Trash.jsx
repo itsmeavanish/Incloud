@@ -29,7 +29,6 @@ function TrashBox({item}){
   return(
     <li 
     className={styles.fileitem} 
-    onClick={handleevent}
   >
     <div className={styles.fileinfo}>
       <span className={styles.fileicon}>
