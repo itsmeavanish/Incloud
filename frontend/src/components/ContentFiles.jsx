@@ -10,7 +10,7 @@ import Spinner from "../Stylings/Spinner";
 export default function ContentFiles({ files }) {
   const [id, setId] = useState();
   const { user, value, trash, favorite, trashData } = useAuth();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(JSON.parse(localStorage.getItem("contentFiles")));
   const [iframe, setIframe] = useState(false);
   const [visible, setVisible] = useState(false);
   const [url, setUrl] = useState("");
