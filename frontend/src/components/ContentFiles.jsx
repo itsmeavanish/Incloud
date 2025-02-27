@@ -90,7 +90,7 @@ export default function ContentFiles({ files }) {
                 iframe={iframe}
                 setiframe={setIframe}
                 fileSize={fileSize}
-                handletrashile={handleTrashFile}
+                handletrashfile={handleTrashFile}
               />
             ))}
           </li>
