@@ -30,7 +30,9 @@ export default function Contentbox({
       if (item.videoUrl || item.fileUrl) setIframe(true);
     }
   };
-
+  function handleaction(id){
+    setId(id);
+  }
 
 
   return (
@@ -53,13 +55,13 @@ export default function Contentbox({
         className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4"
         onClick={(e) => e.stopPropagation()} // Prevent triggering the main click
       >
-        <span onClick={ ()=>setId(id)}>
+        <span onClick={handleaction(id)}>
           <RiLinksFill />
         </span>
-        <span onClick={()=>setId(id)}>
+        <span onClick={handleaction(id)}>
           <CiHeart />
         </span>
-        <span onClick={()=>setId(id)} >
+        <span onClick={handleaction(id)} >
           <FaTrash />
         </span>
       </div>

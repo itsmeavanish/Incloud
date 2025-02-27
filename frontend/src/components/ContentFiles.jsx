@@ -8,7 +8,7 @@ import { useAuth } from "../Context/useAuth";
 import Spinner from "../Stylings/Spinner";
 
 export default function ContentFiles({ files }) {
-  const [id, setId] = useState(null);
+  const [id, setId] = useState("");
   const [data, setData] = useState([]);
   const [iframe, setIframe] = useState(false);
   const [visible, setVisible] = useState(false);
