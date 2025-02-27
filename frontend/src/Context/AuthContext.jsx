@@ -11,6 +11,8 @@ const initialState = {
   loading: true,
   error: null,
   value: "",
+  trashData: [],
+  favoriteData: []
 };
 
 function reducer(state, action) {
@@ -20,21 +22,26 @@ function reducer(state, action) {
     case "logout":
       return { ...state, user: null, isAuthenticated: false, loading: false };
     case "loading":
-      return { ...state, loading: true, error: null };
+      return { ...state, loading: action.payload ?? true, error: null };
     case "error":
       return { ...state, loading: false, error: action.payload };
     case "setUser":
       return { ...state, user: action.payload, isAuthenticated: true, loading: false, error: null };
     case "search":
       return { ...state, value: action.payload };
+    case "trashvalue":
+      return { ...state, trashData: action.payload };
+    case "favoritevalue":
+      return { ...state, favoriteData: action.payload };
     default:
       throw new Error("Unknown action type");
   }
 }
 
 export default function AuthProvider({ children }) {
-    const API_BASE_URL="https://incloud-backend.vercel.app/"
-  const [{ user, isAuthenticated, loading, error, value }, dispatch] = useReducer(reducer, initialState);
+  const API_BASE_URL = "https://incloud-backend.vercel.app/";
+
+  const [{ user, isAuthenticated, loading, error, value, trashData, favoriteData }, dispatch] = useReducer(reducer, initialState);
 
   const fetchUserProfile = async () => {
     try {
@@ -43,13 +50,12 @@ export default function AuthProvider({ children }) {
       if (!token) throw new Error("No authentication token found");
 
       const response = await axios.get(`${API_BASE_URL}api/auth/profile`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       dispatch({ type: "setUser", payload: response.data });
     } catch (err) {
+      console.error("Error fetching user profile:", err);
       dispatch({ type: "error", payload: err.response?.data?.error || "Failed to fetch user profile" });
     }
   };
@@ -68,11 +74,14 @@ export default function AuthProvider({ children }) {
     dispatch({ type: "logout" });
   };
   const search = (value) => dispatch({ type: "search", payload: value });
+  const trash = (value) => dispatch({ type: "trashvalue", payload: [...trashData, value] });
+  const favorite = (value) => dispatch({ type: "favoritevalue", payload: [...favoriteData, value] });
 
   return (
-    <Authcontext.Provider value={{ user, isAuthenticated, loading, error, value, login, logout, search }}>
+    <Authcontext.Provider value={{ user, isAuthenticated, loading, error, value, trashData, favoriteData, login, logout, search, trash, favorite }}>
       {children}
     </Authcontext.Provider>
   );
 }
-export {Authcontext};
+
+export { Authcontext };
