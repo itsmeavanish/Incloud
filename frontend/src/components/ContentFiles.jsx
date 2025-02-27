@@ -21,36 +21,26 @@ export default function ContentFiles({ files }) {
   const name = "general";  
   
   useEffect(() => {
-    const initialData = files?.filter((item) => item.email === user?.email) || [];
-    if (value) {
-      const filteredData = initialData.filter((item) =>
-        item.name?.toLowerCase().includes(value.toLowerCase())
-      );
-      setData(filteredData);
-    } else {
-      setData(initialData);
-    }
+    const filteredData = files?.filter((item) => item.email === user?.email) || [];
+    setData(value 
+      ? filteredData.filter((item) => item.name?.toLowerCase().includes(value.toLowerCase())) 
+      : filteredData
+    );
   }, [files, user?.email, value]);
-  useEffect(
-    ()=>{
-        const initialData = files?.filter((item) => item.email === user?.email) || [];
-      if (initialData){
-        const filteredData=initialData?.filter((file)=>id != file?._id);
-       trash(filteredData);
-        console.log("trashdata",trashData);
-       
-        setData(trashData);
-        
-      }
-      else{
-        setData([]);
-      }
-    
-      },[files,trash,trashData,id,user?.email]
-  )
-  function hadlefavorites(id){
-    const filteredData=data?.filter((file)=>id !== file?.id);
+  
+  useEffect(() => {
+    if (id) {
+      const updatedTrashData = data?.filter((file) => file._id !== id);
+      trash(updatedTrashData); // Assuming `trash` is synchronous
+      setData(trashData);
+    }
+  }, [id, data, trash, trashData]);
+  
+  function handleFavorites(id) {
+    const updatedFavorites = data?.filter((file) => file._id !== id);
+    favorite(updatedFavorites); // Call to update favorites
   }
+  
   const enterFullscreen = () => {
     if (divRef.current.requestFullscreen) {
       divRef.current.requestFullscreen();
