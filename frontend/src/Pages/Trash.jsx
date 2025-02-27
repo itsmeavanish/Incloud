@@ -26,7 +26,7 @@ export default function Trash() {
 }
 function TrashBox({item}){
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
-  console.log(item)
+  console.log("trash",item)
   return(
     <li className={styles.fileitem}>
     <div className={styles.fileinfo}>
