@@ -38,7 +38,7 @@ export default function ContentFiles({ files }) {
     async function trashfile() {
       try {
         if (id) {
-          const updatedData = data?.filter((file) => file._id !== id);
+          const updatedData = data?.filter((file) => file._id == id);
           await trash(updatedData);
           setData(trashData);
         }
@@ -122,6 +122,7 @@ export default function ContentFiles({ files }) {
           flexDirection: "column",
           position: "absolute",
           zIndex: "2000",
+          width:"63%",
           height: "fit-content",
           padding: "1.3rem",
           top: "7rem",
