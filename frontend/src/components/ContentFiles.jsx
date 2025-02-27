@@ -43,10 +43,10 @@ export default function ContentFiles({ files }) {
         
       }
       else{
-        setData("none");
+        setData([]);
       }
     
-      },[files,trash,trashData,id]
+      },[files,trash,trashData,id,user?.email]
   )
   function hadlefavorites(id){
     const filteredData=data?.filter((file)=>id !== file?.id);
