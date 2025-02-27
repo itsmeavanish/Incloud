@@ -10,7 +10,7 @@ import Spinner from "../Stylings/Spinner";
 export default function ContentFiles({ files }) {
   const [id,setid]=useState();
   const { user, value,trash,favorite,trashData,favoriteData } = useAuth();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [iframe, setIframe] = useState(false);
   const [visible, setVisible] = useState(false);
   const [url, setUrl] = useState("");
@@ -34,7 +34,7 @@ export default function ContentFiles({ files }) {
   useEffect(
     ()=>{
    
-        const initialData = data?.filter((item) => item.email === user?.email) || [];
+        const initialData = files?.filter((item) => item.email === user?.email) || [];
       if (initialData){
         const filteredData=initialData?.filter((file)=>id != file?._id);
        trash(filteredData);
@@ -47,7 +47,7 @@ export default function ContentFiles({ files }) {
         setData("none");
       }
     
-      },[data,trash,trashData,user?.email,id]
+      },[files,trash,trashData,user?.email,id]
   )
   function hadlefavorites(id){
     const filteredData=data?.filter((file)=>id !== file?.id);
