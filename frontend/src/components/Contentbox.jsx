@@ -31,17 +31,7 @@ export default function Contentbox({
     }
   };
 
-  // Handle actions (link, favorite, delete)
-  const handleAction = (actionType) => {
-    setId(id);
-    if (actionType === "favorite") {
-      console.log("Add to favorites:", id);
-    } else if (actionType === "trash") {
-      console.log("Move to trash:", id);
-    } else if (actionType === "link") {
-      console.log("Copy link:", id);
-    }
-  };
+
 
   return (
     <div className="group">
@@ -63,13 +53,13 @@ export default function Contentbox({
         className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4"
         onClick={(e) => e.stopPropagation()} // Prevent triggering the main click
       >
-        <span onClick={() => handleAction("link")}>
+        <span onClick={() => setId(id)}>
           <RiLinksFill />
         </span>
-        <span onClick={() => handleAction("favorite")}>
+        <span onClick={() =>setId(id)}>
           <CiHeart />
         </span>
-        <span onClick={() => handleAction("trash")}>
+        <span onClick={setId(id)} >
           <FaTrash />
         </span>
       </div>
