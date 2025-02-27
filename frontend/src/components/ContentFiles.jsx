@@ -38,9 +38,9 @@ export default function ContentFiles({ files }) {
     if (id) {
       const updatedData = data?.filter((file) => file._id !== id);
       trash(updatedData); // Assuming `trash` is synchronous
-      setData(updatedData);
+      setData(trashData);
     }
-  }, [id, data, trash]);
+  }, [id, data, trash,trashData]);
 
   const handleTrashFile = (id) => setId(id);
 
