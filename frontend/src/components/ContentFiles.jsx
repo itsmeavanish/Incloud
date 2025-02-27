@@ -34,10 +34,10 @@ export default function ContentFiles({ files }) {
     const initialData = files?.filter((item) => item.email === user?.email) || [];
   if (initialData){
     const filteredData=initialData?.filter((file)=>id != file?._id);
-   
+   trash(filteredData);
     console.log("trashdata",trashData);
    
-    setData(filteredData);
+    setData(trashData);
     
   }
   else{
