@@ -35,13 +35,17 @@ export default function ContentFiles({ files }) {
 
   // Handle trash functionality
   useEffect(() => {
-   async function trashfile() {
-    if (id) {
-      const updatedData = data?.filter((file) => file._id !== id);
-      await trash(updatedData); // Assuming `trash` is synchronous
-      setData(trashData);
-    }
-   }
+    async function trashfile() {
+      try {
+        if (id) {
+          const updatedData = data?.filter((file) => file._id !== id);
+          await trash(updatedData);
+          setData(trashData);
+        }
+      } catch (error) {
+        console.error("Failed to trash the file:", error);
+      }
+    }    
    trashfile();
   }, [id, data, trash,trashData]);
 
