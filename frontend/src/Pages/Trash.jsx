@@ -37,7 +37,7 @@ function TrashBox({item}){
       <span className={styles.filename}>{item.name}</span>
     </div>
     <span className={styles.filetype}>Folder</span>
-    <span className={styles.filesize}> MB</span>
+    <span className={styles.filesize}>4 MB</span>
     <span className={styles.filedate}>{formatDate(item?.createdAt)}</span>
 
     {/* Hover content */}
