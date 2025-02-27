@@ -4,6 +4,7 @@ import axios from "axios";
 const Authcontext = createContext();
 
 const getToken = () => localStorage.getItem("token");
+const getTrashData = () => JSON.parse(localStorage.getItem("trashData")) || [];
 
 const initialState = {
   user: null,
@@ -11,8 +12,8 @@ const initialState = {
   loading: true,
   error: null,
   value: "",
-  trashData: [],
-  favoriteData: []
+  trashData: getTrashData(),
+  favoriteData: [],
 };
 
 function reducer(state, action) {
@@ -26,7 +27,13 @@ function reducer(state, action) {
     case "error":
       return { ...state, loading: false, error: action.payload };
     case "setUser":
-      return { ...state, user: action.payload, isAuthenticated: true, loading: false, error: null };
+      return {
+        ...state,
+        user: action.payload,
+        isAuthenticated: true,
+        loading: false,
+        error: null,
+      };
     case "search":
       return { ...state, value: action.payload };
     case "trashvalue":
@@ -68,17 +75,37 @@ export default function AuthProvider({ children }) {
     }
   }, [isAuthenticated]);
 
+  // Save trashData to local storage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("trashData", JSON.stringify(trashData));
+  }, [trashData]);
+
   const login = () => dispatch({ type: "login" });
   const logout = () => {
     localStorage.removeItem("token");
     dispatch({ type: "logout" });
   };
   const search = (value) => dispatch({ type: "search", payload: value });
-  const trash = (value) => dispatch({ type: "trashvalue", payload: [...trashData, value] });
-  const favorite = (value) => dispatch({ type: "favoritevalue", payload: [...favoriteData, value] });
+  const trash = (value) => dispatch({ type: "trashvalue", payload: value });
+  const favorite = (value) => dispatch({ type: "favoritevalue", payload: value });
 
   return (
-    <Authcontext.Provider value={{ user, isAuthenticated, loading, error, value, trashData, favoriteData, login, logout, search, trash, favorite }}>
+    <Authcontext.Provider
+      value={{
+        user,
+        isAuthenticated,
+        loading,
+        error,
+        value,
+        trashData,
+        favoriteData,
+        login,
+        logout,
+        search,
+        trash,
+        favorite,
+      }}
+    >
       {children}
     </Authcontext.Provider>
   );
