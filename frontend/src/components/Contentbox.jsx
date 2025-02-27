@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { RiLinksFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa";
-export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,handletrashfile }) {
+export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,setid }) {
   const id =item._id;
   console.log("item",item)
   function handleevent(){
@@ -41,13 +41,16 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
         {/* Hover content */}
         
       </li>
-      <div className="absolute top-80 w-auto h-auto bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 right-20 gap-4">
-          <RiLinksFill  onClick={()=>handletrashfile(id)} />
-       
-            
-          <CiHeart onClick={()=>handletrashfile(id)} /> 
-            
-          <FaTrash onClick={()=>handletrashfile(id)} />
+      <div className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4">
+          <span onClick={()=>setid(id)} >
+          <RiLinksFill  />
+          </span>
+          <span onClick={()=>setid(id)} >
+          <CiHeart /> 
+          </span>
+         <span onClick={()=>setid(id)}>
+         <FaTrash  />
+         </span>
           
         </div>
 </div>

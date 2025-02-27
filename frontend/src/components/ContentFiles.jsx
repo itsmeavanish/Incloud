@@ -8,6 +8,7 @@ import { useAuth } from "../Context/useAuth";
 import Spinner from "../Stylings/Spinner";
 
 export default function ContentFiles({ files }) {
+  const [id,setid]=useState();
   const { user, value,trash,favorite,trashData,favoriteData } = useAuth();
   const [data, setData] = useState();
   const [iframe, setIframe] = useState(false);
@@ -30,21 +31,24 @@ export default function ContentFiles({ files }) {
       setData(initialData);
     }
   }, [files, user?.email, value]);
-  function handletrashfile(id){
-    const initialData = files?.filter((item) => item.email === user?.email) || [];
-  if (initialData){
-    const filteredData=initialData?.filter((file)=>id != file?._id);
-   trash(filteredData);
-    console.log("trashdata",trashData);
+  useEffect(
+    ()=>{
    
-    setData(trashData);
+        const initialData = data?.filter((item) => item.email === user?.email) || [];
+      if (initialData){
+        const filteredData=initialData?.filter((file)=>id != file?._id);
+       trash(filteredData);
+        console.log("trashdata",trashData);
+       
+        setData(trashData);
+        
+      }
+      else{
+        setData("none");
+      }
     
-  }
-  else{
-    setData("none");
-  }
-
-  }
+      },[data,trash,trashData,user?.email,id]
+  )
   function hadlefavorites(id){
     const filteredData=data?.filter((file)=>id !== file?.id);
   }
@@ -163,7 +167,7 @@ export default function ContentFiles({ files }) {
                 iframe={iframe}
                 setiframe={setIframe}
                 fileSize={fileSize}
-                handletrashfile={handletrashfile}
+                setid={setid}
               />
             ))}
           </li>
