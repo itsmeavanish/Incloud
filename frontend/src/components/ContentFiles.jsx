@@ -33,7 +33,6 @@ export default function ContentFiles({ files }) {
   }, [files, user?.email, value]);
   useEffect(
     ()=>{
-   
         const initialData = files?.filter((item) => item.email === user?.email) || [];
       if (initialData){
         const filteredData=initialData?.filter((file)=>id != file?._id);
@@ -47,7 +46,7 @@ export default function ContentFiles({ files }) {
         setData("none");
       }
     
-      },[files,trash,trashData,user?.email,id]
+      },[files,trash,trashData,id]
   )
   function hadlefavorites(id){
     const filteredData=data?.filter((file)=>id !== file?.id);
