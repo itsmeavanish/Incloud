@@ -1,11 +1,10 @@
 import React from 'react'
-import[] { useAuth } from '../Context/useAuth'
+import { useAuth } from '../Context/useAuth'
 import styles from "../components/Content.module.css"
 import { SiFiles } from "react-icons/si";
-import { func } from 'prop-types'
 export default function Trash() {
   const {trash,trashData}=useAuth();
-  const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
+  
   return (
     
 
@@ -26,6 +25,7 @@ export default function Trash() {
   )
 }
 function TrashBox({item}){
+  const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
   return(
     <li 
     className={styles.fileitem} 
