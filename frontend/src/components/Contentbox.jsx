@@ -5,7 +5,8 @@ import { CiHeart } from "react-icons/ci";
 import { RiLinksFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa";
 export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,setid }) {
-  const id =item._id;
+  const id =item?._id;
+  const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
   console.log("item",item)
   function handleevent(){
     setvisible(!visible);
@@ -20,7 +21,6 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
       setiframe(!iframe);
     } 
   }
-  const date=item.createdAt.split("T");
   return (
     // JSX part (React component)
 <div className="group">
@@ -36,7 +36,7 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
         </div>
         <span className={styles.filetype}>Folder</span>
         <span className={styles.filesize}>{fileSize} MB</span>
-        <span className={styles.filedate}>{date[0]}</span>
+        <span className={styles.filedate}>{formatDate(item?.createdAt)}</span>
 
         {/* Hover content */}
         
