@@ -35,7 +35,7 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
           <span className={styles.filename}>{item.name}</span>
         </div>
         <span className={styles.filetype}>Folder</span>
-        <span className={styles.filesize}>{fileSize} MB</span>
+        <span className={styles.filesize}> MB</span>
         <span className={styles.filedate}>{formatDate(item?.createdAt)}</span>
 
         {/* Hover content */}

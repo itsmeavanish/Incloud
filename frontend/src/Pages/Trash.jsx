@@ -1,9 +1,9 @@
-import React from 'react'
+
 import { useAuth } from '../Context/useAuth'
 import styles from "../components/Content.module.css"
 import { SiFiles } from "react-icons/si";
 export default function Trash() {
-  const {trash,trashData}=useAuth();
+  const {trashData}=useAuth();
   
   return (
     
