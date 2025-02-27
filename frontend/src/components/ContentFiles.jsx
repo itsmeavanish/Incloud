@@ -8,9 +8,9 @@ import { useAuth } from "../Context/useAuth";
 import Spinner from "../Stylings/Spinner";
 
 export default function ContentFiles({ files }) {
-  const [id,setid]=useState();
-  const { user, value,trash,favorite,trashData,favoriteData } = useAuth();
-  const [data, setData] = useState();
+  const [id, setId] = useState();
+  const { user, value, trash, favorite, trashData } = useAuth();
+  const [data, setData] = useState([]);
   const [iframe, setIframe] = useState(false);
   const [visible, setVisible] = useState(false);
   const [url, setUrl] = useState("");
@@ -18,47 +18,47 @@ export default function ContentFiles({ files }) {
   const [fileSize, setFileSize] = useState(1);
   const divRef = useRef(null);
   const [loading, setLoading] = useState(false);
-  const name = "general";  
-  
+  const name = "general";
+
+  // Filter data based on user email and search value
   useEffect(() => {
-    const filteredData = files?.filter((item) => item.email === user?.email) || [];
-    setData(value 
-      ? filteredData.filter((item) => item.name?.toLowerCase().includes(value.toLowerCase())) 
-      : filteredData
+    const filteredData =
+      files?.filter((item) => item.email === user?.email) || [];
+    setData(
+      value
+        ? filteredData.filter((item) =>
+            item.name?.toLowerCase().includes(value.toLowerCase())
+          )
+        : filteredData
     );
   }, [files, user?.email, value]);
-  
+
+  // Handle trash functionality
   useEffect(() => {
     if (id) {
-      const updatedTrashData = data?.filter((file) => file._id !== id);
-      trash(updatedTrashData); // Assuming `trash` is synchronous
-      setData(trashData);
+      const updatedData = data?.filter((file) => file._id !== id);
+      trash(updatedData); // Assuming `trash` is synchronous
+      setData(updatedData);
     }
-  }, [id, data, trash, trashData]);
-  
-  function handleFavorites(id) {
-    const updatedFavorites = data?.filter((file) => file._id !== id);
-    favorite(updatedFavorites); // Call to update favorites
-  }
-  function handletrashile(id){
-    setid(id);
-  }
-  const enterFullscreen = () => {
-    if (divRef.current.requestFullscreen) {
-      divRef.current.requestFullscreen();
-    } else if (divRef.current.webkitRequestFullscreen) {
-      divRef.current.webkitRequestFullscreen();
-    } else if (divRef.current.msRequestFullscreen) {
-      divRef.current.msRequestFullscreen();
-    }
+  }, [id, data, trash]);
+
+  const handleTrashFile = (id) => setId(id);
+
+  const handleFavorites = (id) => {
+    const updatedData = data?.filter((file) => file._id !== id);
+    favorite(updatedData); // Call to update favorites
+    setData(updatedData);
   };
-  const exitFullscreen = () => {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
+
+  const enterFullscreen = () => {
+    if (divRef.current) {
+      if (divRef.current.requestFullscreen) {
+        divRef.current.requestFullscreen();
+      } else if (divRef.current.webkitRequestFullscreen) {
+        divRef.current.webkitRequestFullscreen();
+      } else if (divRef.current.msRequestFullscreen) {
+        divRef.current.msRequestFullscreen();
+      }
     }
   };
 
@@ -68,86 +68,18 @@ export default function ContentFiles({ files }) {
 
   return (
     <>
-      <style>
-        {`
-        /* Responsive styles */
-        @media (max-width: 768px) {
-          ul {
-            margin: 0.5rem;
-            padding: 0.5rem;
-          }
-
-          li {
-            flex-direction: column;
-            text-align: center;
-            gap: 0.5rem;
-          }
-
-          button {
-            left: 50%;
-            transform: translateX(-50%);
-          }
-
-          .element {
-            width: 90%;
-            left: 5%;
-            top: 10%;
-          }
-
-          img, iframe {
-            height: 20rem;
-            width: 100%;
-          }
-        }
-
-        @media (max-width: 480px) {
-          li {
-            gap: 0.3rem;
-          }
-
-          h2 {
-            font-size: 1rem;
-          }
-
-          img, iframe {
-            height: 15rem;
-          }
-        }
-        `}
-      </style>
-      <ul
-        style={{
-          margin: "1rem",
-          padding: "1rem",
-          listStyleType: "none",
-          display: "flex",
-          flexDirection: "column",
-          gap: "0.6rem",
-        }}
-      >
-        <li
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "1rem",
-            color: "#6c6868f7",
-            textAlign: "center",
-            borderBottom: "1px solid #DFE8DC",
-          }}
-        >
+      <ul className="m-4 p-4 list-none flex flex-col gap-2">
+        {/* Table Header */}
+        <li className="flex justify-between p-4 text-gray-600 text-center border-b">
           <span>Name</span>
-          <span style={{ paddingLeft: "5.2rem" }}>Type</span>
-          <span style={{ paddingLeft: "3.7rem" }}>FileSize</span>
+          <span className="pl-16">Type</span>
+          <span className="pl-8">FileSize</span>
           <span>Created at</span>
         </li>
+
+        {/* Files List */}
         {files?.length ? (
-          <li
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-            }}
-          >
+          <li className="flex flex-col gap-4">
             {data?.map((item, index) => (
               <Contentbox
                 key={index}
@@ -158,62 +90,38 @@ export default function ContentFiles({ files }) {
                 iframe={iframe}
                 setiframe={setIframe}
                 fileSize={fileSize}
-              handletrashile
+                handletrashile={handleTrashFile}
               />
             ))}
           </li>
         ) : (
-          <span style={{ textAlign: "center", padding: "1rem" }}>
-            No files yet
-          </span>
+          <span className="text-center p-4">No files yet</span>
         )}
+
+        {/* Upload Button */}
         <button
-          style={{
-            position: "relative",
-            bottom: "-10%",
-            background: "#3aa56f",
-            width: "fit-content",
-            top: "1rem",
-            left: "43%",
-            padding: "1rem 2rem",
-            borderRadius: "30px",
-          }}
+          className="relative bg-green-600 text-white py-2 px-4 rounded-full w-fit mx-auto mt-4"
           onClick={() => setUploader(!uploader)}
         >
           Upload
         </button>
       </ul>
-      {visible ? (
+
+      {/* File Preview Modal */}
+      {visible && (
         <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            position: "absolute",
-            zIndex: "2000",
-            width: "63%",
-            height: "90%",
-            padding: "1.3rem",
-            top: "4rem",
-            left: "20rem",
-            gap: "0.7rem",
-            background: "#fbfbfc7f",
-            border: "1px solid #e9e9f1",
-          }}
-          className="bg-opacity-50 backdrop-blur-md shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
+          ref={divRef}
+          className="flex flex-col items-center absolute z-50 w-3/5 h-4/5 p-6 top-16 left-1/4 gap-4 bg-white shadow-lg rounded-lg"
         >
-          <h2 style={{ fontWeight: "600", textAlign: "center" }}>
-            Your Uploaded Data
-          </h2>
+          <h2 className="font-semibold text-center">Your Uploaded Data</h2>
           <span
-            style={{ position: "absolute", right: "4rem", cursor: "pointer" }}
-            className="expand"
+            className="absolute top-4 right-16 cursor-pointer"
             onClick={enterFullscreen}
           >
             <TbMaximize />
           </span>
           <span
-            style={{ position: "absolute", right: "2rem", cursor: "pointer" }}
+            className="absolute top-4 right-8 cursor-pointer"
             onClick={() => {
               setVisible(!visible);
               setIframe(false);
@@ -222,45 +130,25 @@ export default function ContentFiles({ files }) {
             <IoMdCloseCircle />
           </span>
           {!iframe ? (
-            <img ref={divRef} src={url} style={{ height: "33rem" }} />
+            <img src={url} className="h-80" alt="Preview" />
           ) : (
-            <iframe
-              src={url}
-              alt="Preview"
-              style={{ height: "33rem", width: "33rem", color: "black" }}
-            />
+            <iframe src={url} className="h-80 w-80" title="Preview"></iframe>
           )}
         </div>
-      ) : null}
-      {uploader ? (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            position: "absolute",
-            zIndex: "2000",
-            width: "63%",
-            height: "fit-content",
-            padding: "1.3rem",
-            top: "7rem",
-            left: "25rem",
-            gap: "0.7rem",
-            background: "#fbfbfc7f",
-            border: "1px solid #e9e9f1",
-          }}
-          className="bg-opacity-50 backdrop-blur-md shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
-        >
-          <h2 style={{ fontWeight: "600", textAlign: "center" }}>Upload Box</h2>
+      )}
+
+      {/* Uploader Modal */}
+      {uploader && (
+        <div className="flex flex-col absolute z-50 w-3/5 h-auto p-6 top-28 left-1/4 gap-4 bg-white shadow-lg rounded-lg">
+          <h2 className="font-semibold text-center">Upload Box</h2>
           <Uploadbox name={name} setfileSize={setFileSize} />
           <span
-            style={{ position: "absolute", right: "2rem", cursor: "pointer" }}
+            className="absolute top-4 right-8 cursor-pointer"
             onClick={() => setUploader(!uploader)}
           >
             <IoMdCloseCircle />
           </span>
         </div>
-      ) : (
-        ""
       )}
     </>
   );
