@@ -111,7 +111,7 @@ export default function ContentFiles({ files }) {
       {visible && (
         <div
           ref={divRef}
-          className="flex flex-col items-center absolute z-50 w-3/5 h-4/5 p-6 top-16 left-1/4 gap-4 bg-white shadow-lg rounded-lg"
+         className="bg-opacity-50 backdrop-blur-md shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
         >
           <h2 className="font-semibold text-center">Your Uploaded Data</h2>
           <span
