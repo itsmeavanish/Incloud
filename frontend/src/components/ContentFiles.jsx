@@ -9,7 +9,7 @@ import Spinner from "../Stylings/Spinner";
 
 export default function ContentFiles({ files }) {
   const [id, setId] = useState();
-  const { user, value, trash, favorite } = useAuth();
+  const { user, value, trash, favorite, trashData } = useAuth();
   const [data, setData] = useState([]);
   const [iframe, setIframe] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -20,52 +20,51 @@ export default function ContentFiles({ files }) {
   const [loading, setLoading] = useState(false);
   const name = "general";
 
-  // Load data on mount
+  // Filter data based on user email and search value
   useEffect(() => {
-    const storedData = localStorage.getItem("contentFiles");
-    let initialData = files?.filter((item) => item.email === user?.email) || [];
-    if (storedData) {
-      initialData = JSON.parse(storedData);
-    }
-
-    // Apply search filter
+    const filteredData =
+      files?.filter((item) => item.email === user?.email) || [];
+     
     setData(
       value
-        ? initialData.filter((item) =>
+        ? filteredData.filter((item) =>
             item.name?.toLowerCase().includes(value.toLowerCase())
           )
-        : initialData
-    );
-  }, [files, user?.email, value]);
-
-  // Save data to localStorage whenever it changes
-  useEffect(() => {
+        : filteredData
+    )
     localStorage.setItem("contentFiles", JSON.stringify(data));
-  }, [data]);
+  }, [files, user?.email, value,data]);
 
-  // Handle trash functionality
   useEffect(() => {
     async function trashfile() {
+      const storedData = JSON.parse(localStorage.getItem("contentFiles"));
+      if(storedData){
+        setData(storedData)
+      }
       try {
         if (id) {
+          // Filter out the file with the given id
           const updatedData = data?.filter((file) => file._id !== id);
-          await trash(updatedData); // Perform the trash operation
-          setData(updatedData); // Update state
-          setId(null); // Clear the id
+          await trash(updatedData); // Perform trash action
+          setData(updatedData); // Update the state
+          setId(null); // Clear the id after processing
         }
       } catch (error) {
         console.error("Failed to trash the file:", error);
       }
     }
+  
     trashfile();
   }, [id, data, trash]);
-
+  
+  // Define a separate handler for trash
   const handleTrashFile = (fileId) => {
     setId(fileId);
   };
+  
 
-  const handleFavorites = (fileId) => {
-    const updatedData = data?.filter((file) => file._id !== fileId);
+  const handleFavorites = (id) => {
+    const updatedData = data?.filter((file) => file._id !== id);
     favorite(updatedData); // Call to update favorites
     setData(updatedData);
   };
@@ -98,7 +97,7 @@ export default function ContentFiles({ files }) {
         </li>
 
         {/* Files List */}
-        {data?.length ? (
+        {files?.length ? (
           <li className="flex flex-col gap-4">
             {data?.map((item, index) => (
               <Contentbox
@@ -130,22 +129,22 @@ export default function ContentFiles({ files }) {
       {/* File Preview Modal */}
       {visible && (
         <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            position: "absolute",
-            zIndex: "2000",
-            width: "63%",
-            height: "fit-content",
-            padding: "1.3rem",
-            top: "7rem",
-            left: "25rem",
-            gap: "0.7rem",
-            background: "#fbfbfc7f",
-            border: "1px solid #e9e9f1",
-          }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          position: "absolute",
+          zIndex: "2000",
+          width:"63%",
+          height: "fit-content",
+          padding: "1.3rem",
+          top: "7rem",
+          left: "25rem",
+          gap: "0.7rem",
+          background: "#fbfbfc7f",
+          border: "1px solid #e9e9f1",
+        }}
           ref={divRef}
-          className="bg-opacity-50 backdrop-blur-md shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
+         className="bg-opacity-50 backdrop-blur-md shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
         >
           <h2 className="font-semibold text-center">Your Uploaded Data</h2>
           <span
