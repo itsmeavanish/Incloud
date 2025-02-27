@@ -11,8 +11,8 @@ const initialState = {
   loading: true,
   error: null,
   value: "",
-  trashData: JSON.parse(localStorage.getItem("trashData")) || [], // Load trashData from localStorage
-  favoriteData: JSON.parse(localStorage.getItem("favoriteData")) || [], // Load favoriteData from localStorage
+  trashData: [],
+  favoriteData: []
 };
 
 function reducer(state, action) {
@@ -60,15 +60,6 @@ export default function AuthProvider({ children }) {
     }
   };
 
-  // Save trashData and favoriteData to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem("trashData", JSON.stringify(trashData));
-  }, [trashData]);
-
-  useEffect(() => {
-    localStorage.setItem("favoriteData", JSON.stringify(favoriteData));
-  }, [favoriteData]);
-
   useEffect(() => {
     if (isAuthenticated) {
       fetchUserProfile();
@@ -80,33 +71,14 @@ export default function AuthProvider({ children }) {
   const login = () => dispatch({ type: "login" });
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("trashData"); // Clear trashData on logout
-    localStorage.removeItem("favoriteData"); // Clear favoriteData on logout
     dispatch({ type: "logout" });
   };
   const search = (value) => dispatch({ type: "search", payload: value });
-  const trash = (value) =>
-    dispatch({ type: "trashvalue", payload: [...trashData, value] });
-  const favorite = (value) =>
-    dispatch({ type: "favoritevalue", payload: [...favoriteData, value] });
+  const trash = (value) => dispatch({ type: "trashvalue", payload: [...trashData, value] });
+  const favorite = (value) => dispatch({ type: "favoritevalue", payload: [...favoriteData, value] });
 
   return (
-    <Authcontext.Provider
-      value={{
-        user,
-        isAuthenticated,
-        loading,
-        error,
-        value,
-        trashData,
-        favoriteData,
-        login,
-        logout,
-        search,
-        trash,
-        favorite,
-      }}
-    >
+    <Authcontext.Provider value={{ user, isAuthenticated, loading, error, value, trashData, favoriteData, login, logout, search, trash, favorite }}>
       {children}
     </Authcontext.Provider>
   );
