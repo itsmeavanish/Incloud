@@ -1,60 +1,78 @@
 import { SiFiles } from "react-icons/si";
-import styles from"./Content.module.css"
-import { useRef, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { RiLinksFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa";
-export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,setid }) {
-  const id =item._id;
-  console.log("item",item)
-  function handleevent(){
-    setvisible(!visible);
-    if (item.imageUrl){
-    seturl(item.imageUrl);}
-    else if(item.videoUrl){
-      seturl(item.videoUrl)
-      setiframe(!iframe);
+import styles from "./Content.module.css";
+import { useState } from "react";
+
+export default function Contentbox({
+  item,
+  setVisible,
+  visible,
+  setUrl,
+  iframe,
+  setIframe,
+  fileSize,
+  setId,
+}) {
+  const id = item._id;
+
+  // Format the creation date
+  const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
+
+  // Handle file preview
+  const handleEvent = () => {
+    setVisible(!visible);
+    setIframe(false);
+
+    if (item.imageUrl || item.videoUrl || item.fileUrl) {
+      setUrl(item.imageUrl || item.videoUrl || item.fileUrl);
+      if (item.videoUrl || item.fileUrl) setIframe(true);
     }
-    else{
-      seturl(item.fileUrl)
-      setiframe(!iframe);
-    } 
-  }
-  const date=item.createdAt.split("T");
+  };
+
+  // Handle actions (link, favorite, delete)
+  const handleAction = (actionType) => {
+    setId(id);
+    if (actionType === "favorite") {
+      console.log("Add to favorites:", id);
+    } else if (actionType === "trash") {
+      console.log("Move to trash:", id);
+    } else if (actionType === "link") {
+      console.log("Copy link:", id);
+    }
+  };
+
   return (
-    // JSX part (React component)
-<div className="group">
-<li 
-        className={styles.fileitem} 
-        onClick={handleevent}
-      >
+    <div className="group">
+      {/* Main file item */}
+      <li className={styles.fileitem} onClick={handleEvent}>
         <div className={styles.fileinfo}>
           <span className={styles.fileicon}>
             <SiFiles color="#fdca13" />
           </span>
           <span className={styles.filename}>{item.name}</span>
         </div>
-        <span className={styles.filetype}>Folder</span>
+        <span className={styles.filetype}>{item.type || "Folder"}</span>
         <span className={styles.filesize}>{fileSize} MB</span>
-        <span className={styles.filedate}>{date[0]}</span>
-
-        {/* Hover content */}
-        
+        <span className={styles.filedate}>{formatDate(item.createdAt)}</span>
       </li>
-      <div className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4">
-          <span onClick={()=>setid(id)} >
-          <RiLinksFill  />
-          </span>
-          <span onClick={()=>setid(id)} >
-          <CiHeart /> 
-          </span>
-         <span onClick={()=>setid(id)}>
-         <FaTrash  />
-         </span>
-          
-        </div>
-</div>
 
+      {/* Hover actions */}
+      <div
+        className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4"
+        onClick={(e) => e.stopPropagation()} // Prevent triggering the main click
+      >
+        <span onClick={() => handleAction("link")}>
+          <RiLinksFill />
+        </span>
+        <span onClick={() => handleAction("favorite")}>
+          <CiHeart />
+        </span>
+        <span onClick={() => handleAction("trash")}>
+          <FaTrash />
+        </span>
+      </div>
+    </div>
   );
-  
 }
