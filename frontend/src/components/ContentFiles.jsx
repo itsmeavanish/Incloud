@@ -34,13 +34,14 @@ export default function ContentFiles({ files }) {
     const filteredData=[];
     const initialData = data?.filter((item) => item.email === user?.email) || [];
   if (initialData){
-    console.log(initialData);
     const filteredtrashData=initialData?.filter((file)=>id === file?._id);
     trash(filteredtrashData);
+    console.log(trashData)
     trashData.forEach((element )=> {
-       [...filteredData,(initialData?.filter((item)=>element?._id===item?._id))]
+       [...filteredData,(initialData?.filter((item)=>element?._id !=item?._id))]
+       setData(filteredData)
     });
-    setData(filteredData)
+    
   }
   else{
     setData(trashData);
