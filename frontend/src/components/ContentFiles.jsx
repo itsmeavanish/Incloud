@@ -33,23 +33,29 @@ export default function ContentFiles({ files }) {
     );
   }, [files, user?.email, value]);
 
-  // Handle trash functionality
   useEffect(() => {
     async function trashfile() {
       try {
         if (id) {
-          const updatedData = data?.filter((file) => file._id == id);
-          await trash(updatedData);
-          setData(trashData);
+          // Filter out the file with the given id
+          const updatedData = data?.filter((file) => file._id !== id);
+          await trash(updatedData); // Perform trash action
+          setData(updatedData); // Update the state
+          setId(null); // Clear the id after processing
         }
       } catch (error) {
         console.error("Failed to trash the file:", error);
       }
-    }    
-   trashfile();
-  }, [id, data, trash,trashData]);
-
-  const handleTrashFile = (id) => setId(id);
+    }
+  
+    trashfile();
+  }, [id, data, trash]);
+  
+  // Define a separate handler for trash
+  const handleTrashFile = (fileId) => {
+    setId(fileId);
+  };
+  
 
   const handleFavorites = (id) => {
     const updatedData = data?.filter((file) => file._id !== id);
