@@ -10,7 +10,7 @@ import Spinner from "../Stylings/Spinner";
 export default function ContentFiles({ files }) {
   const [id, setId] = useState();
   const { user, value, trash, favorite, trashData } = useAuth();
-  const [data, setData] = useState(JSON.parse(localStorage.getItem("contentFiles")));
+  const [data, setData] = useState([]);
   const [iframe, setIframe] = useState(false);
   const [visible, setVisible] = useState(false);
   const [url, setUrl] = useState("");
@@ -40,9 +40,8 @@ useEffect(() => {
         // Filter out the file with the given id
         const updatedData = data?.filter((file) => file._id !== id);
         await trash(updatedData); // Perform trash action
-        setData(updatedData); // Update the state
+        setData(trashData); // Update the state
         setId(null); // Clear the id after processing
-        localStorage.setItem("contentFiles", JSON.stringify(data));
       }
     } catch (error) {
       console.error("Failed to trash the file:", error);
@@ -50,7 +49,7 @@ useEffect(() => {
   }
 
   trashfile();
-}, [id, data, trash]);
+}, [id, data, trash,trashData]);
 
 // Define a separate handler for trash
 const handleTrashFile = (fileId) => {
