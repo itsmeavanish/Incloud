@@ -40,7 +40,9 @@ export default function ContentFiles({ files }) {
     const updatedFavorites = data?.filter((file) => file._id !== id);
     favorite(updatedFavorites); // Call to update favorites
   }
-  
+  function handletrashile(id){
+    setid(id);
+  }
   const enterFullscreen = () => {
     if (divRef.current.requestFullscreen) {
       divRef.current.requestFullscreen();
@@ -156,7 +158,7 @@ export default function ContentFiles({ files }) {
                 iframe={iframe}
                 setiframe={setIframe}
                 fileSize={fileSize}
-                setid={setid}
+              handletrashile
               />
             ))}
           </li>
