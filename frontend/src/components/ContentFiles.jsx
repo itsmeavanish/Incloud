@@ -31,20 +31,17 @@ export default function ContentFiles({ files }) {
     }
   }, [files, user?.email, value]);
   function handletrashfile(id){
-    const filteredData=[];
     const initialData = data?.filter((item) => item.email === user?.email) || [];
   if (initialData){
-    const filteredtrashData=initialData?.filter((file)=>id === file?._id);
+    const filteredtrashData=initialData?.filter((file)=>id == file?._id);
     trash(filteredtrashData);
-    console.log(trashData)
-    trashData.forEach((element )=> {
-       [...filteredData,(initialData?.filter((item)=>element?._id !=item?._id))]
-       setData(filteredData)
-    });
+    console.log("trashdata",trashData);
+    const filteredData=initialData?.filter((item)=>!trashData.includes(item));
+    setData(filteredData);
     
   }
   else{
-    setData(trashData);
+    setData("none");
   }
 
   }
