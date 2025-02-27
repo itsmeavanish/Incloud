@@ -110,6 +110,19 @@ export default function ContentFiles({ files }) {
       {/* File Preview Modal */}
       {visible && (
         <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          position: "absolute",
+          zIndex: "2000",
+          height: "fit-content",
+          padding: "1.3rem",
+          top: "7rem",
+          left: "25rem",
+          gap: "0.7rem",
+          background: "#fbfbfc7f",
+          border: "1px solid #e9e9f1",
+        }}
           ref={divRef}
          className="bg-opacity-50 backdrop-blur-md shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
         >
