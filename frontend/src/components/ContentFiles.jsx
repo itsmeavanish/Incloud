@@ -35,11 +35,14 @@ export default function ContentFiles({ files }) {
 
   // Handle trash functionality
   useEffect(() => {
+   async function trashfile() {
     if (id) {
       const updatedData = data?.filter((file) => file._id !== id);
-      trash(updatedData); // Assuming `trash` is synchronous
+      await trash(updatedData); // Assuming `trash` is synchronous
       setData(trashData);
     }
+   }
+   trashfile();
   }, [id, data, trash,trashData]);
 
   const handleTrashFile = (id) => setId(id);
