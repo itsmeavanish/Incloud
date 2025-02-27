@@ -108,31 +108,55 @@ export default function ContentFiles({ files }) {
 
       {visible && (
         <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            position: "absolute",
+            zIndex: "2000",
+            width: "63%",
+            height: "fit-content",
+            padding: "1.3rem",
+            top: "7rem",
+            left: "25rem",
+            gap: "0.7rem",
+            background: "#fbfbfc7f",
+            border: "1px solid #e9e9f1",
+          }}
           ref={divRef}
-          className="absolute z-50 top-20 left-1/4 w-3/5 bg-white shadow-lg rounded-lg p-6"
+          className="bg-opacity-50 backdrop-blur-md shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
         >
           <h2 className="font-semibold text-center">Your Uploaded Data</h2>
           <span
+            className="absolute top-4 right-16 cursor-pointer"
+            onClick={enterFullscreen}
+          >
+            <TbMaximize />
+          </span>
+          <span
             className="absolute top-4 right-8 cursor-pointer"
-            onClick={() => setVisible(false)}
+            onClick={() => {
+              setVisible(!visible);
+              setIframe(false);
+            }}
           >
             <IoMdCloseCircle />
           </span>
           {!iframe ? (
             <img src={url} className="h-80" alt="Preview" />
           ) : (
-            <iframe src={url} className="h-80 w-full" title="Preview"></iframe>
+            <iframe src={url} className="h-80 w-80" title="Preview"></iframe>
           )}
         </div>
       )}
 
+      {/* Uploader Modal */}
       {uploader && (
-        <div className="absolute z-50 w-3/5 h-auto top-28 left-1/4 bg-white shadow-lg rounded-lg p-6">
+        <div className="flex flex-col absolute z-50 w-3/5 h-auto p-6 top-28 left-1/4 gap-4 bg-white shadow-lg rounded-lg">
           <h2 className="font-semibold text-center">Upload Box</h2>
           <Uploadbox name={name} setfileSize={setFileSize} />
           <span
             className="absolute top-4 right-8 cursor-pointer"
-            onClick={() => setUploader(false)}
+            onClick={() => setUploader(!uploader)}
           >
             <IoMdCloseCircle />
           </span>
