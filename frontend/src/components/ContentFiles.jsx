@@ -9,7 +9,7 @@ import Spinner from "../Stylings/Spinner";
 
 export default function ContentFiles({ files }) {
   const [id, setId] = useState();
-  const { user, value, trash, favorite, trashData } = useAuth();
+  const { user, value, trash, favorite } = useAuth();
   const [data, setData] = useState([]);
   const [iframe, setIframe] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -20,29 +20,23 @@ export default function ContentFiles({ files }) {
   const [loading, setLoading] = useState(false);
   const name = "general";
 
-  // Filter data based on user email and search value
-  useEffect(() => {
-    const filteredData =
-      files?.filter((item) => item.email === user?.email) || [];
-    setData(
-      value
-        ? filteredData.filter((item) =>
-            item.name?.toLowerCase().includes(value.toLowerCase())
-          )
-        : filteredData
-    );
-  }, [files, user?.email, value]);
-
+  // Load data on mount
   useEffect(() => {
     const storedData = localStorage.getItem("contentFiles");
+    let initialData = files?.filter((item) => item.email === user?.email) || [];
     if (storedData) {
-      setData(JSON.parse(storedData));
-    } else {
-      const filteredData =
-        files?.filter((item) => item.email === user?.email) || [];
-      setData(filteredData);
+      initialData = JSON.parse(storedData);
     }
-  }, [files, user?.email]);
+
+    // Apply search filter
+    setData(
+      value
+        ? initialData.filter((item) =>
+            item.name?.toLowerCase().includes(value.toLowerCase())
+          )
+        : initialData
+    );
+  }, [files, user?.email, value]);
 
   // Save data to localStorage whenever it changes
   useEffect(() => {
@@ -66,9 +60,12 @@ export default function ContentFiles({ files }) {
     trashfile();
   }, [id, data, trash]);
 
+  const handleTrashFile = (fileId) => {
+    setId(fileId);
+  };
 
-  const handleFavorites = (id) => {
-    const updatedData = data?.filter((file) => file._id !== id);
+  const handleFavorites = (fileId) => {
+    const updatedData = data?.filter((file) => file._id !== fileId);
     favorite(updatedData); // Call to update favorites
     setData(updatedData);
   };
@@ -101,7 +98,7 @@ export default function ContentFiles({ files }) {
         </li>
 
         {/* Files List */}
-        {files?.length ? (
+        {data?.length ? (
           <li className="flex flex-col gap-4">
             {data?.map((item, index) => (
               <Contentbox
@@ -133,22 +130,22 @@ export default function ContentFiles({ files }) {
       {/* File Preview Modal */}
       {visible && (
         <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          position: "absolute",
-          zIndex: "2000",
-          width:"63%",
-          height: "fit-content",
-          padding: "1.3rem",
-          top: "7rem",
-          left: "25rem",
-          gap: "0.7rem",
-          background: "#fbfbfc7f",
-          border: "1px solid #e9e9f1",
-        }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            position: "absolute",
+            zIndex: "2000",
+            width: "63%",
+            height: "fit-content",
+            padding: "1.3rem",
+            top: "7rem",
+            left: "25rem",
+            gap: "0.7rem",
+            background: "#fbfbfc7f",
+            border: "1px solid #e9e9f1",
+          }}
           ref={divRef}
-         className="bg-opacity-50 backdrop-blur-md shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
+          className="bg-opacity-50 backdrop-blur-md shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
         >
           <h2 className="font-semibold text-center">Your Uploaded Data</h2>
           <span
