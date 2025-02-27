@@ -26,10 +26,9 @@ export default function Trash() {
 }
 function TrashBox({item}){
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
+  console.log(item)
   return(
-    <li 
-    className={styles.fileitem} 
-  >
+    <li className={styles.fileitem}>
     <div className={styles.fileinfo}>
       <span className={styles.fileicon}>
         <SiFiles color="#fdca13" />
