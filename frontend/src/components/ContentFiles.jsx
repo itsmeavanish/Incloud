@@ -36,7 +36,7 @@ export default function ContentFiles({ files }) {
     const filteredtrashData=initialData?.filter((file)=>id == file?._id);
     trash(filteredtrashData);
     console.log("trashdata",trashData);
-    const filteredData=initialData?.filter((item)=>!filteredtrashData.includes(item));
+    const filteredData=initialData?.filter((item)=>trashData?.filter((trash)=>trash?._id !=item?._id));
     setData(filteredData);
     
   }
