@@ -32,6 +32,7 @@ export default function Contentbox({
   };
   function handleaction(id){
     setId(id);
+    return
   }
 
 
