@@ -50,17 +50,17 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
           <RiLinksFill  />
           </span>
           <span onClick={()=>handleFavorites(id)}>
-          <CiHeart /> 
-          </span>
-         <span onClick={()=>handletrashfile(id)} >
-         <button className={`flex items-center justify-center p-4 rounded-full transition-colors ${isFavorited ? "bg-red-500 text-white" : "bg-gray-200 text-gray-700"}`}>
-      <Heart onClick={toggleFavorite}
-        size={24}
+          <button className={`flex items-center justify-center p-4 rounded-full transition-colors ${isFavorited ? "bg-red-500 text-white" : "bg-gray-200 text-gray-700"}`}>
+        <Heart onClick={toggleFavorite}
+        size={18}
         className={`transition-transform ${
           isFavorited ? "fill-current scale-125" : "scale-100"
         }`}
       />
     </button>
+          </span>
+         <span onClick={()=>handletrashfile(id)} >
+         <FaTrash />
          </span>
           
         </div>

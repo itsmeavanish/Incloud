@@ -99,8 +99,7 @@ export default function ContentFiles({ files }) {
           <span className="text-center p-4">No files yet</span>
         )}
 
-        <button
-          className="relative bg-green-600 text-white py-2 px-4 rounded-full w-fit mx-auto mt-4"
+        <button className="relative bg-green-600 text-white py-2 px-4 rounded-full w-fit mx-auto mt-4"
           onClick={() => setUploader(!uploader)}
         >
           Upload
@@ -118,8 +117,7 @@ export default function ContentFiles({ files }) {
           <Uploadbox name={name} setfileSize={setFileSize} />
           <span
             className="absolute top-4 right-8 cursor-pointer"
-            onClick={() => setUploader(!uploader)}
-          >
+            onClick={() => setUploader(!uploader)}>
             <IoMdCloseCircle />
           </span>
         </div>
