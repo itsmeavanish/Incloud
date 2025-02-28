@@ -45,16 +45,16 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
         {/* Hover content */}
         
       </li>
-      <div className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4 relative  bottom-20" style={{left:"87%"}}>
+      <div className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4 relative  bottom-20" style={{left:"82%"}}>
           <span   onClick={()=>handlelinks(id)}>
           <RiLinksFill  />
           </span>
           <span onClick={()=>handleFavorites(id)}>
-          <button className={`flex items-center justify-center p-4 rounded-full`}>
+          <button className={`flex items-center justify-center p-4 rounded-full `}>
         <Heart onClick={toggleFavorite}
         size={16}
         className={`transition-all ${
-          isFavorited ? "fill-current scale-125 bg-red-500 text-red" : "scale-100 bg-transparent text-gray-700"
+          isFavorited ? "fill-current scale-125 rounded-full bg-red-500 text-red-500" : "scale-100 bg-transparent text-gray-700 rounded-full"
         }`}
       />
     </button>
