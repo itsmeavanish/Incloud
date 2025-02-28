@@ -8,7 +8,7 @@ import { useAuth } from "../Context/useAuth";
 import Spinner from "../Stylings/Spinner";
 
 export default function ContentFiles({ files }) {
-  const { user, value, trash, trashData, favorite,links } = useAuth();
+  const { user, value, trash, trashData, favorite,links,favoriteData,linksData } = useAuth();
   const [data, setData] = useState([]);
   const [iframe, setIframe] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -47,12 +47,20 @@ export default function ContentFiles({ files }) {
   };
 
   const handleFavorites = (id) => {
-    const updatedData = data?.filter((file) => file._id == id);
-    favorite(updatedData); // Call to update favorites
+    const updatedData = data?.find((file) => file._id === id);
+    if(updatedData){
+      const favdata=[...favoriteData,updatedData]
+      favorite(favdata); // Call to update favorites
+    }
+    
   };
   const handlelinks = (id) => {
-    const updatedData = data?.filter((file) => file._id == id);
-    links(updatedData); // Call to update favorites
+    const updatedData = data?.find((file) => file._id === id);
+    if(updatedData){
+      const linkdata=[...linksData,updatedData]
+      links(linkdata); // Call to update favorites
+    }
+   
   };
 
   const enterFullscreen = () => {
