@@ -8,7 +8,7 @@ export default function Trash() {
   return (
     
 
-    <ul className='display flex flex-col'>
+    <ul className='display flex flex-col p-2'>
       <h1 style={{fontWeight:"600", padding:"1rem", marginLeft:"1rem"}}>
         Your Favorite Data
       </h1>

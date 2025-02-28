@@ -1,13 +1,17 @@
 import { SiFiles } from "react-icons/si";
 import styles from"./Content.module.css"
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { RiLinksFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa";
+import { Heart } from "lucide-react";
 export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,handletrashfile,handleFavorites,handlelinks }) {
+  const [isFavorited, setIsFavorited] = useState(false);
+  const toggleFavorite = () => {
+    setIsFavorited((prev) => !prev);
+  };
   const id =item?._id;
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
-  console.log("item",item)
   function handleevent(){
     setvisible(!visible);
     if (item.imageUrl){
@@ -41,15 +45,22 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
         {/* Hover content */}
         
       </li>
-      <div className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4 relative  bottom-16 mx-96">
+      <div className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4 relative  bottom-16" style={{left:"70%"}}>
           <span   onClick={()=>handlelinks(id)}>
           <RiLinksFill  />
           </span>
           <span onClick={()=>handleFavorites(id)}>
           <CiHeart /> 
           </span>
-         <span >
-         <FaTrash onClick={()=>handletrashfile(id)} />
+         <span onClick={()=>handletrashfile(id)} >
+         <button className={`flex items-center justify-center p-4 rounded-full transition-colors ${isFavorited ? "bg-red-500 text-white" : "bg-gray-200 text-gray-700"}`}>
+      <Heart onClick={toggleFavorite}
+        size={24}
+        className={`transition-transform ${
+          isFavorited ? "fill-current scale-125" : "scale-100"
+        }`}
+      />
+    </button>
          </span>
           
         </div>
