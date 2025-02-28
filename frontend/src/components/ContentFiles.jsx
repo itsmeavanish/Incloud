@@ -111,7 +111,7 @@ export default function ContentFiles({ files }) {
 
       {/* Uploader Modal */}
       {uploader && (
-        <div className="flex flex-col absolute z-50 w-3/5 h-auto p-6 top-28 left-1/4 gap-4 bg-white shadow-lg rounded-lg">
+        <div className="flex flex-col absolute z-50 w-3/5 h-auto p-6 top-28 left-1/4 gap-4 bg-white shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"  >
           <h2 className="font-semibold text-center">Upload Box</h2>
           <Uploadbox name={name} setfileSize={setFileSize} />
           <span

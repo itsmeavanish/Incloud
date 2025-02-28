@@ -65,7 +65,7 @@ export function Upload({ items }) {
             borderRadius: "1rem",
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
           }}
-          className="bg-opacity-50 backdrop-blur-md shadow-lg transform rounded-lg"
+          className="flex flex-col absolute z-50 w-3/5 h-auto p-6 top-28 left-1/4 gap-4 bg-white shadow-lg transform -translate-y-6 -translate-x-6 rounded-lg element"
         >
           <h2 style={{ fontWeight: "600", fontSize: "1.2rem", textAlign: "center" }}>
             Upload Box
