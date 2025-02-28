@@ -9,6 +9,9 @@ export default function Trash() {
     
 
     <ul className='display flex flex-col'>
+      <h1>
+        Your Trashed Data
+      </h1>
       <li className="flex justify-between p-4 text-gray-600 text-center border-b">
           <span>Name</span>
           <span className="pl-16">Type</span>
@@ -26,7 +29,7 @@ export default function Trash() {
 }
 function TrashBox({item}){
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
-  console.log("trash",item)
+  console.log("trash",item);
   return(
     <li className={styles.fileitem}>
     <div className={styles.fileinfo}>
