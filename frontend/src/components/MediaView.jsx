@@ -50,11 +50,13 @@ export default function MediaView({divRef,setVisible,setIframe,visible,iframe,ur
           >
             <IoMdCloseCircle />
           </span>
+          <div style={{height:"100%", width:"100%", display:"flex", justifyContent:"center", alignItems:"center" }}>
           {!iframe ? (
-            <img src={url} className="h-80 w-96" alt="Preview" />
+            <img src={url} height="70%" width="50%" alt="Preview" />
           ) : (
-            <iframe src={url} className="h-80 w-96" title="Preview"></iframe>
+            <iframe src={url} height="70%" width="50%"title="Preview" style={{scrollbarWidth:"none"}}></iframe>
           )}
+          </div>
         </div>
   )
 }
