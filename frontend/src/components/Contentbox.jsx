@@ -41,7 +41,7 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
         {/* Hover content */}
         
       </li>
-      <div className="m-7 w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4 relative right-32 bottom-28">
+      <div className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4 relative -right-28 bottom-28">
           <span onClick={()=>handletrashfile(id)} >
           <RiLinksFill  />
           </span>
