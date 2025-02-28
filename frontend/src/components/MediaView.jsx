@@ -16,6 +16,8 @@ export default function MediaView({divRef,setVisible,setIframe,visible,iframe,ur
       };
     
   return (
+    <>
+    {visible &&
     <div
           style={{
             display: "flex",
@@ -57,6 +59,7 @@ export default function MediaView({divRef,setVisible,setIframe,visible,iframe,ur
             <iframe src={url} height="70%" width="50%"title="Preview" style={{scrollbarWidth:"none"}}></iframe>
           )}
           </div>
-        </div>
+        </div>}
+        </>
   )
 }

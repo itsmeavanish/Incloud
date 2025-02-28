@@ -106,9 +106,8 @@ export default function ContentFiles({ files }) {
         </button>
       </ul>
 
-      {visible && (
         <MediaView  divRef={divRef} setvisible={setVisible} visible={visible} iframe={iframe} url={url}/>
-      )}
+     
 
       {/* Uploader Modal */}
       {uploader && (
