@@ -12,7 +12,7 @@ export default function Trash() {
       <h1 style={{fontWeight:"600", padding:"1rem", marginLeft:"1rem"}}>
         Your Trashed Data
       </h1>
-      <li className="flex justify-between p-4 text-gray-600 text-center border-b">
+      <li className="flex justify-between text-gray-600 text-center border-b p-8">
           <span>Name</span>
           <span className="pl-16">Type</span>
           <span className="pl-8">FileSize</span>

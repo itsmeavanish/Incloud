@@ -52,7 +52,7 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
           <span onClick={()=>handleFavorites(id)}>
           <button className={`flex items-center justify-center p-4 rounded-full`}>
         <Heart onClick={toggleFavorite}
-        size={18}
+        size={16}
         className={`transition-all ${
           isFavorited ? "fill-current scale-125 bg-red-500 text-red" : "scale-100 bg-transparent text-gray-700"
         }`}
