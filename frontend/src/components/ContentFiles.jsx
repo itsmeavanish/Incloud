@@ -47,18 +47,16 @@ export default function ContentFiles({ files }) {
   };
 
   const handleFavorites = (id) => {
-    const updatedData = data?.find((file) => file._id === id);
+    const updatedData = data?.filter((file) => file._id === id);
     if(updatedData){
-      const favdata=[...favoriteData,updatedData]
-      favorite(favdata); // Call to update favorites
+      favorite(updatedData); // Call to update favorites
     }
     
   };
   const handlelinks = (id) => {
-    const updatedData = data?.find((file) => file._id === id);
+    const updatedData = data?.filter((file) => file._id === id);
     if(updatedData){
-      const linkdata=[...linksData,updatedData]
-      links(linkdata); // Call to update favorites
+      links(updatedData); // Call to update favorites
     }
    
   };
