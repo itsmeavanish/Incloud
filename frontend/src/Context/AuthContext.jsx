@@ -5,6 +5,8 @@ const Authcontext = createContext();
 
 const getToken = () => localStorage.getItem("token");
 const getTrashData = () => JSON.parse(localStorage.getItem("trashData")) || [];
+const getFavoriteData=()=>JSON.parse(localStorage.getItem("favoriteData"))||[];
+const getlinks=()=>JSON.parse(localStorage.getItem("linksData"))||[]
 
 const initialState = {
   user: null,
@@ -13,7 +15,8 @@ const initialState = {
   error: null,
   value: "",
   trashData: getTrashData(),
-  favoriteData: [],
+  favoriteData: getFavoriteData(),
+  linksData:getlinks(),
 };
 
 function reducer(state, action) {
@@ -40,6 +43,8 @@ function reducer(state, action) {
       return { ...state, trashData: action.payload };
     case "favoritevalue":
       return { ...state, favoriteData: action.payload };
+      case "links":
+      return { ...state, linksData: action.payload };
     default:
       throw new Error("Unknown action type");
   }
@@ -48,7 +53,7 @@ function reducer(state, action) {
 export default function AuthProvider({ children }) {
   const API_BASE_URL = "https://incloud-backend.vercel.app/";
 
-  const [{ user, isAuthenticated, loading, error, value, trashData, favoriteData }, dispatch] = useReducer(reducer, initialState);
+  const [{ user, isAuthenticated, loading, error, value, trashData, favoriteData,linksData }, dispatch] = useReducer(reducer, initialState);
 
   const fetchUserProfile = async () => {
     try {
@@ -78,7 +83,9 @@ export default function AuthProvider({ children }) {
   // Save trashData to local storage whenever it changes
   useEffect(() => {
     localStorage.setItem("trashData", JSON.stringify(trashData));
-  }, [trashData]);
+    localStorage.setItem("linksData",JSON.stringify(linksData));
+    localStorage.setItem("favoriteData",JSON.stringify(favoriteData));
+  }, [trashData,linksData,favoriteData]);
 
   const login = () => dispatch({ type: "login" });
   const logout = () => {
@@ -88,6 +95,7 @@ export default function AuthProvider({ children }) {
   const search = (value) => dispatch({ type: "search", payload: value });
   const trash = (value) => dispatch({ type: "trashvalue", payload: value });
   const favorite = (value) => dispatch({ type: "favoritevalue", payload: value });
+  const links=(value)=>dispatch({type:"links",payload:value})
 
   return (
     <Authcontext.Provider
@@ -104,6 +112,7 @@ export default function AuthProvider({ children }) {
         search,
         trash,
         favorite,
+        links,
       }}
     >
       {children}

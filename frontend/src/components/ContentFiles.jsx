@@ -8,7 +8,7 @@ import { useAuth } from "../Context/useAuth";
 import Spinner from "../Stylings/Spinner";
 
 export default function ContentFiles({ files }) {
-  const { user, value, trash, trashData, favorite } = useAuth();
+  const { user, value, trash, trashData, favorite,links } = useAuth();
   const [data, setData] = useState([]);
   const [iframe, setIframe] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -47,9 +47,12 @@ export default function ContentFiles({ files }) {
   };
 
   const handleFavorites = (id) => {
-    const updatedData = data?.filter((file) => file._id !== id);
+    const updatedData = data?.filter((file) => file._id == id);
     favorite(updatedData); // Call to update favorites
-    setData(updatedData);
+  };
+  const handlelinks = (id) => {
+    const updatedData = data?.filter((file) => file._id == id);
+    links(updatedData); // Call to update favorites
   };
 
   const enterFullscreen = () => {
@@ -91,6 +94,8 @@ export default function ContentFiles({ files }) {
                 setiframe={setIframe}
                 fileSize={fileSize}
                 handletrashfile={handleTrashFile}
+                handleFavorites={handleFavorites}
+                handlelinks={handlelinks}
               />
             ))}
           </li>

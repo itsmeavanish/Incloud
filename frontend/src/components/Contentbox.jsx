@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { RiLinksFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa";
-export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,handletrashfile }) {
+export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,handletrashfile,handlefavorites,handlelinks }) {
   const id =item?._id;
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
   console.log("item",item)
@@ -45,10 +45,10 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
           <span onClick={()=>handletrashfile(id)} >
           <RiLinksFill  />
           </span>
-          <span onClick={()=>handletrashfile(id)}>
+          <span onClick={()=>handlefavorites(id)}>
           <CiHeart /> 
           </span>
-         <span onClick={()=>handletrashfile(id)}>
+         <span onClick={()=>handlelinks(id)}>
          <FaTrash  />
          </span>
           
