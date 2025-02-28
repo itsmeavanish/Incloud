@@ -9,7 +9,7 @@ export default function Trash() {
     
 
     <ul className='display flex flex-col'>
-      <h1 style={{fontWeight:"600", padding:"1rem"}}>
+      <h1 style={{fontWeight:"600", padding:"1rem", marginLeft:"1rem"}}>
         Your Shared Links
       </h1>
       <li className="flex justify-between p-4 text-gray-600 text-center border-b">

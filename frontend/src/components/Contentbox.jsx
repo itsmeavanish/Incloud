@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { RiLinksFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa";
-export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,handletrashfile,handlefavorites,handlelinks }) {
+export default function Contentbox({ item,setvisible,visible,seturl,iframe,setiframe,fileSize,handletrashfile,handleFavorites,handlelinks }) {
   const id =item?._id;
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
   console.log("item",item)
@@ -41,11 +41,11 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
         {/* Hover content */}
         
       </li>
-      <div className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4 relative -right-96 bottom-16">
+      <div className="w-fit h-fit bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg p-3 gap-4 relative  bottom-16 mx-96">
           <span   onClick={()=>handlelinks(id)}>
           <RiLinksFill  />
           </span>
-          <span onClick={()=>handlefavorites(id)}>
+          <span onClick={()=>handleFavorites(id)}>
           <CiHeart /> 
           </span>
          <span >
