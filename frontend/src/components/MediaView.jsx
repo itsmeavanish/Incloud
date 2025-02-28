@@ -3,7 +3,7 @@ import { IoMdCloseCircle } from 'react-icons/io';
 import { TbMaximize } from 'react-icons/tb';
 
 export default function MediaView({divRef,setIframe,iframe,url}) {
-  const [visible,setVisible]=useState();
+  const [visible,setVisible]=useState(true);
     const enterFullscreen = () => {
         if (divRef.current) {
           if (divRef.current.requestFullscreen) {
