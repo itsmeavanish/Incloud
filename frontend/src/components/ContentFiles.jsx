@@ -153,9 +153,9 @@ export default function ContentFiles({ files }) {
             <IoMdCloseCircle />
           </span>
           {!iframe ? (
-            <img src={url} className="h-80" alt="Preview" />
+            <img src={url} className="h-80 w-96" alt="Preview" />
           ) : (
-            <iframe src={url} className="h-80 w-80" title="Preview"></iframe>
+            <iframe src={url} className="h-80 w-96" title="Preview"></iframe>
           )}
         </div>
       )}
