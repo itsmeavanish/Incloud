@@ -78,7 +78,7 @@ export default function ContentFiles({ files }) {
         </li>
 
         {data?.length ? (
-          <li className="flex flex-col gap-4">
+          <li className="flex flex-col gap-1">
             {data.map((item, index) => (
               <Contentbox
                 key={index}

@@ -51,7 +51,7 @@ export default function MediaView({divRef,setIframe,iframe,url}) {
           {!iframe ? (
             <img src={url} height="70%" width="50%" alt="Preview" />
           ) : (
-            <iframe src={url} height="70%" width="50%"title="Preview" style={{overflow:"hidden", scrollbarWidth:"none"}}></iframe>
+            <iframe src={url} height="100%" width="50%"title="Preview" style={{overflow:"hidden", scrollbarWidth:"none"}}></iframe>
           )}
           </div>
         </div>}
