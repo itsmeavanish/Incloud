@@ -18,7 +18,7 @@ export default function Trash() {
           <span className="pl-8">FileSize</span>
           <span>Created at</span>
       </li>
-      {linksData.map((item)=><Links key={item?._id} item={item}/>)}
+      {linksData?.map((item)=><Links key={item?._id} item={item}/>)}
       
 
       
