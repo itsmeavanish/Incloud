@@ -65,7 +65,7 @@ async function uploadFileToCloudinarys(file, folder) {
         folder,
         use_filename: true,
         unique_filename: false,
-        resource_type: "auto", // Automatically detect file type
+        resource_type: "raw", // Automatically detect file type
     };
 
     console.log("Temp file path:", file.tempFilePath);
@@ -182,7 +182,7 @@ exports.generalFileUpload = async (req, res) => {
         const file = req.files.content;
         console.log("Received file:", file);
 
-        const supportedTypes = ["svg", "mp4", "jpg", "png", "docx", "xlsx", "pdf"];
+        const supportedTypes = [ "mp4","mov", "jpg", "png", "docx", "xlsx", "pdf"];
         const fileType = file.name.split(".").pop().toLowerCase();
 
         if (!isFileTypeSupported(fileType, supportedTypes)) {
@@ -200,7 +200,7 @@ exports.generalFileUpload = async (req, res) => {
             name,
             tags,
             email,
-            fileUrl: fileType === "pdf" ? `${response.secure_url}.pdf` : response.secure_url,
+            fileUrl: response.secure_url,
         });
 
         res.json({
