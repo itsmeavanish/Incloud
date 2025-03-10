@@ -65,7 +65,7 @@ async function uploadFileToCloudinarys(file, folder) {
         folder,
         use_filename: true,
         unique_filename: false,
-        resource_type: "raw", // Automatically detect file type
+        resource_type: "auto", // Automatically detect file type
     };
 
     console.log("Temp file path:", file.tempFilePath);
