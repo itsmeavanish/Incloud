@@ -4,6 +4,10 @@ import { TbMaximize } from 'react-icons/tb';
 
 export default function MediaView({divRef,setIframe,iframe,url}) {
   const [visible,setVisible]=useState(true);
+  console.log(url.split("."));
+  const typecheck=url.split(".");
+  const length=typecheck.length();
+
       const enterFullscreen = () => {
         if (divRef.current) {
           if (divRef.current.requestFullscreen) {
@@ -15,7 +19,9 @@ export default function MediaView({divRef,setIframe,iframe,url}) {
           }
         }
       };
-    
+    if (typecheck[length-1]==="jpg" || typecheck[length-1]==="png"){
+      setIframe(true)
+    }
   return (
     <>
     {visible &&
@@ -44,14 +50,14 @@ export default function MediaView({divRef,setIframe,iframe,url}) {
           >
             <TbMaximize />
           </span>
-          <span className="absolute top-4 right-8 cursor-pointer" onClick={() => {setVisible(!visible); setIframe(false);}}>
+          <span className="absolute top-4 right-8 cursor-pointer" onClick={() => {setVisible(!visible);}}>
             <IoMdCloseCircle />
           </span>
           <div style={{height:"100%", width:"100%", display:"flex", justifyContent:"center", alignItems:"center" }}>
          
           {!iframe ? (
             <img src={url} height="70%" width="50%" alt="Preview" />
-      ):<iframe src={url} height="100%" width="50%"title="Preview" style={{overflow:"hidden", scrollbarWidth:"none"}}></iframe>
+      ):<iframe src={url} height="100vh" width="50vw"title="Preview" style={{overflow:"hidden", scrollbarWidth:"none"}}></iframe>
           }
           </div>
         </div>}
