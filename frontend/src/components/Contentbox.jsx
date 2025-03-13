@@ -10,6 +10,9 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
   const toggleFavorite = () => {
     setIsFavorited((prev) => !prev);
   };
+  const link=item?.imageUrl;
+  const length=link.split(".").length;
+  
   const id =item?._id;
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
   function handleevent(){
@@ -36,9 +39,9 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
           <span className={styles.fileicon}>
             <SiFiles color="#fdca13" />
           </span>
-          <span className={styles.filename}>{item.name}</span>
+          <span className={styles.filename}>{item?.name}</span>
         </div>
-        <span className={styles.filetype}>Folder</span>
+        <span className={styles.filetype}>{link.split(".")[length-1]=== "jpg" || link.split(".")[length-1]==="png" ? "Photo" : link.split(".")[length-1]==="mp4" || link.split(".")[length-1]=== "mov" ?"Video" :"Document"}</span>
         <span className={styles.filesize}> MB</span>
         <span className={styles.filedate}>{formatDate(item?.createdAt)}</span>
 
