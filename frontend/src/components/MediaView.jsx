@@ -6,7 +6,7 @@ export default function MediaView({divRef,setIframe,iframe,url}) {
   const [visible,setVisible]=useState(true);
   console.log(url.split("."));
   const typecheck=url?.split(".");
-  const length=typecheck?.length;
+  const itemlength=typecheck[length];
 
       const enterFullscreen = () => {
         if (divRef.current) {
@@ -19,7 +19,7 @@ export default function MediaView({divRef,setIframe,iframe,url}) {
           }
         }
       };
-    if (typecheck[length-1] !=="jpg" || typecheck[length-1] !=="png"){
+    if (typecheck[itemlength-1] !=="jpg" || typecheck[itemlength-1] !=="png"){
       setIframe(true);
     }
   return (
