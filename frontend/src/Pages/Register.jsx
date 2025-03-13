@@ -55,7 +55,6 @@ export default function Register() {
       console.log("response", response);
       login(formData);
       setloading(true);
-
       navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "An error occurred");
