@@ -4,8 +4,9 @@ import { TbMaximize } from 'react-icons/tb';
 
 export default function MediaView({divRef,setIframe,iframe,url}) {
   const [visible,setVisible]=useState(true);
-  console.log(url?.split("."));
-  const typecheck=url?.split(".");
+  console.log(url.split("."));
+  const typecheck=url.split(".");
+  const length=typecheck.length;
 
       const enterFullscreen = () => {
         if (divRef.current) {
