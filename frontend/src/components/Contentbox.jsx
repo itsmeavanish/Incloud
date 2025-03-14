@@ -11,7 +11,7 @@ export default function Contentbox({ item,setvisible,visible,seturl,iframe,setif
     setIsFavorited((prev) => !prev);
   };
   const link=item?.imageUrl;
-  const itemlength=link?.split(".")[length];
+  const itemlength=link?.split(".").length;
   
   const id =item?._id;
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString();

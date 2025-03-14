@@ -6,7 +6,7 @@ export default function MediaView({divRef,setIframe,iframe,url}) {
   const [visible,setVisible]=useState(true);
   console.log(url.split("."));
   const typecheck=url.split(".");
-  const itemlength=typecheck[length];
+  const itemlength=typecheck.length;
 
       const enterFullscreen = () => {
         if (divRef.current) {
