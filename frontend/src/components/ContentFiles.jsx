@@ -11,7 +11,7 @@ import MediaView from "./MediaView";
 export default function ContentFiles({ files }) {
   const { user, value, trash, trashData, favorite,links} = useAuth();
   const [data, setData] = useState([]);
-  const [iframe, setIframe] = useState(false);
+  const [iframe, setIframe] = useState(true);
   const [visible, setVisible] = useState(false);
   const [url, setUrl] = useState("");
   const [uploader, setUploader] = useState(false);

@@ -19,8 +19,8 @@ export default function MediaView({divRef,setIframe,iframe,url}) {
           }
         }
       };
-    if (typecheck[itemlength-1] !=="jpg" || typecheck[itemlength-1] !=="png"){
-      setIframe(true);
+    if (typecheck[itemlength-1] ==="jpg" || typecheck[itemlength-1] ==="png"){
+      setIframe(false);
     }
   return (
     <>
