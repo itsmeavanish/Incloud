@@ -1,11 +1,11 @@
 import React from "react";
-const ShareButton = () => {
+const ShareButton = ({children,shared}) => {
   const handleShare = async () => {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "Check this out!",
-          text: "I found this amazing content and thought you’d love it too.",
+          title: "Link for Media",
+          text: shared,
           url: window.location.href,
         });
         console.log("Content shared successfully!");
@@ -19,7 +19,7 @@ const ShareButton = () => {
 
   return (
     <button onClick={handleShare} className="bg-blue-500 text-white p-3 rounded-lg">
-      Share
+      {children}
     </button>
   );
 };

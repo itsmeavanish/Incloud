@@ -5,7 +5,7 @@ import { SiFiles } from "react-icons/si";
 import ShareButton from '../components/ShareButton';
 export default function Trash() {
   const {linksData}=useAuth();
-  
+  console.log(linksData);
   return (
     
 
@@ -18,7 +18,7 @@ export default function Trash() {
           <span className="pl-16">Type</span>
           <span className="pl-8">FileSize</span>
           <span>Created at</span>
-          <ShareButton />
+   
       </li>
       {linksData?.map((item)=><Links key={item?._id} item={item}/>)}
       
@@ -33,7 +33,8 @@ function Links({item}){
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
   console.log("trash",item);
   return(
-    <li className={styles.fileitem}>
+
+    <ShareButton className={styles.fileitem} shared={item.fileUrl}>
     <div className={styles.fileinfo}>
       <span className={styles.fileicon}>
         <SiFiles color="#fdca13" />
@@ -46,6 +47,6 @@ function Links({item}){
 
     {/* Hover content */}
     
-  </li>
+  </ShareButton>
   )
 }
