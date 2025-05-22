@@ -5,8 +5,8 @@ const ShareButton = ({children,shared}) => {
       try {
         await navigator.share({
           title: "Link for Media",
-          text: shared,
-          url: window.location.href,
+          text: "Check out this media file!",
+          url: shared,
         });
         console.log("Content shared successfully!");
       } catch (error) {
@@ -23,5 +23,4 @@ const ShareButton = ({children,shared}) => {
     </button>
   );
 };
-
 export default ShareButton;
