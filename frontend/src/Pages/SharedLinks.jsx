@@ -2,6 +2,7 @@
 import { useAuth } from '../Context/useAuth'
 import styles from "../components/Content.module.css"
 import { SiFiles } from "react-icons/si";
+import ShareButton from '../components/ShareButton';
 export default function Trash() {
   const {linksData}=useAuth();
   
@@ -12,11 +13,12 @@ export default function Trash() {
       <h1 style={{fontWeight:"600", padding:"1rem", marginLeft:"1rem"}}>
         Your Shared Links
       </h1>
-      <li className="flex justify-between p-4 text-gray-600 text-center border-b">
+      <li className="flex justify-between p-4 text-gray-600 text-center border-b" >
           <span>Name</span>
           <span className="pl-16">Type</span>
           <span className="pl-8">FileSize</span>
           <span>Created at</span>
+          <ShareButton />
       </li>
       {linksData?.map((item)=><Links key={item?._id} item={item}/>)}
       
