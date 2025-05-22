@@ -72,13 +72,12 @@ export default function Uploadbox({name}) {
   }, [uploadData]);
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
- 
     if (!uploadData.content) {
      toast.warn("Please select a file to upload")
       return;
     }
-
     const formData = new FormData();
     formData.append("name", uploadData.name);
     formData.append("tags", uploadData.tags);
@@ -86,6 +85,7 @@ export default function Uploadbox({name}) {
     formData.append("content", uploadData.content);
 
     try {
+      setloading(false);
       if (name==="IMAGE"){
         const response = await axios.post(
           `${API_BASE_URL}api/auth/upload/imageUpload`,
@@ -113,7 +113,7 @@ export default function Uploadbox({name}) {
           }
         );
       }    
-      setloading(true);
+      setloading(false)
       toast.success("File Uploaded Sucessfully")
       navigate("/");
     } catch (err) {
@@ -213,7 +213,7 @@ export default function Uploadbox({name}) {
         }}
         onClick={handleSubmit}
       >
-        Upload
+        {loading?"Uploading":"Upload"}
       </button>
       {error && (
         <div className="text-red-500 text-center mt-4">

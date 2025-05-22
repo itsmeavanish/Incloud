@@ -44,6 +44,7 @@ export default function Register() {
     data.append("profilePhoto", formData.profilePhoto);
 
     try {
+      setloading(true);
       const response = await axios.post(
         `${API_BASE_URL}api/auth/register`,
         data,
@@ -54,7 +55,7 @@ export default function Register() {
       localStorage.setItem("token", response.data.token);
       console.log("response", response);
       login(formData);
-      setloading(true);
+      setloading(false)
       navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "An error occurred");
@@ -143,7 +144,7 @@ export default function Register() {
               </div>
 
               <button type="submit" className={styles.submitButton}>
-                Sign Up
+                 {loading ? "Signing Up" :"Sign Up"}
               </button>
             </form>
 
