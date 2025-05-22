@@ -18,7 +18,7 @@ const ShareButton = ({children,shared}) => {
   };
 
   return (
-    <button onClick={handleShare} className="bg-blue-500 text-white p-3 rounded-lg">
+    <button onClick={handleShare}>
       {children}
     </button>
   );
