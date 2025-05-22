@@ -195,16 +195,12 @@ exports.generalFileUpload = async (req, res) => {
         console.log("Uploading to Cloudinary...");
         const response = await uploadFileToCloudinarys(file, "Codehelp");
         console.log("Cloudinary upload response:", response);
-        const url=response.secure_url.split(".");
-        const final=""
-        for (i=0;i<url.length;i++){
-            final+=url[0];
-        }
+
         const fileData = await File.create({
             name,
             tags,
             email,
-            fileUrl: `${final}.png`,
+            fileUrl: response.secure_url,
         });
 
         res.json({
